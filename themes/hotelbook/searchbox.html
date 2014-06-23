@@ -1,0 +1,7 @@
+{# Введите ключевое слово #}
+<form id="searchform" class="search" action="{{ pathto('search') }}" method="get">
+	<input class="search-input" autocomplete="off" autofocus="autofocus" type="search" name="q" size="18" placeholder="{{ _('Enter key word') }}" />
+	<input class="search-submit search-big button green" type="submit" value="{{ _('Search') }}" />
+	<input type="hidden" name="check_keywords" value="yes" />
+	<input type="hidden" name="area" value="default" />
+</form>
