@@ -82,6 +82,7 @@ Response, VoucherInfoResponse
                    </AdditionalDetailList>]
                 </Room>
               </RoomList>
+              [<HotelRemarks>...</HotelRemarks>] - remarks
               [<AOTNumbers> - contacts
                  <Location name="...">...</Location>
                </AOTNumbers>]
@@ -205,6 +206,8 @@ Child items:
 +----------------+-----------+-------------------------------------------+
 | RoomList       | Yes       | List of reserved rooms                    |
 +----------------+-----------+-------------------------------------------+
+| HotelRemarks   | No        | Remarks                                   |
++----------------+--------------+----------------------------------------+
 | AOTNumbers     | No        | Contact list for emergency communications |
 +----------------+-----------+-------------------------------------------+
 
@@ -348,6 +351,16 @@ Child items:
 +----------------------+--------------------------------+-----------------------+-----------------------------+
 | AdditionalDetailList | List of AdditionalDetail items | No                    | Additional details          |
 +----------------------+--------------------------------+-----------------------+-----------------------------+
+
+
+Order/ItemList/Item/Voucher/HotelRemarks item
+----------------------------------------------
+
+Remarks
+
+Attributes: No.
+
+Child items: No.
 
 
 Order/ItemList/Item/Voucher/AOTNumbers item
