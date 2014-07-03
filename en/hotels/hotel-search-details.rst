@@ -161,7 +161,6 @@ XML-schema response:
             <RoomPrices>
               <Room
                 roomNumber=".." - number of rooms
-                roomName="..."- room name
                   child="0|1" 
                   [cots="1|2"] - number of cots 
                 >
@@ -640,8 +639,6 @@ Attributes:
 | **Attribute**  | **Type** | **Mandatory** | **Description**                   |
 +================+==========+===============+===================================+
 | ``roomNumber`` | numeric  | yes           | Number of rooms (>=1)             |
-+----------------+----------+---------------+-----------------------------------+
-| ``roomName``   | string   | yes           | Room name (room size, type, view) |
 +----------------+----------+---------------+-----------------------------------+
 | ``child``      | 0/1      | yes           | Number of children (0 / 1)        |
 +----------------+----------+---------------+-----------------------------------+
