@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="VehicleInsurancePolicyAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+		    <xs:annotation>
+		        <xs:documentation>id of the insurance policy</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name_ru" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Russian name of the insurance policy</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description_ru" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Description of the insurance policy in Russian</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description_en" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Description of the insurance policy in English</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VehicleInsuranceEventAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+		    <xs:annotation>
+		        <xs:documentation>id of the insurance event</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name_ru" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Russian name of the Insurance Event</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description_ru" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Description in Russian</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description_en" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Description in English</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- Complex Elements -->
+	<xs:element name="VehicleInsuranceEvent">
+	    <xs:annotation>
+	        <xs:documentation>The Insurance Event</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+		    <xs:attributeGroup ref="VehicleInsuranceEventAttributes"/>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="VehicleInsuranceEventList">
+	    <xs:complexType>
+	        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+	            <xs:element ref="VehicleInsuranceEvent"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="VehicleInsurancePolicy">
+	    <xs:annotation>
+	        <xs:documentation>The insurance policy</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VehicleInsuranceEventList" minOccurs="0"/>
+				<xs:element name="Name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="VehicleInsurancePolicyAttributes"/>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="VehicleInsurancePolicies">
+	    <xs:complexType>
+	        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+	            <xs:element ref="VehicleInsurancePolicy"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+    <xs:element name="Response">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleInsurancePolicies"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

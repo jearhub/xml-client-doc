@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../order/ModifyOrderBase.xsd"/>
+	<!-- Attributes -->
+	<!-- Simple Elements -->
+	<xs:element name="Date" type="T_Date"/>
+	<xs:element name="Passengers" type="xs:positiveInteger"/>
+	<xs:element name="VehicleId" type="xs:positiveInteger"/>
+	<xs:element name="AirportId" type="xs:positiveInteger"/>
+	<xs:element name="StationId" type="xs:positiveInteger"/>
+	<xs:element name="HotelId" type="xs:string"/>
+	<xs:element name="FlightNum" type="xs:string"/>
+	<xs:element name="TrainNum" type="xs:string"/>
+	<xs:element name="AddressLine" type="T_String40"/>
+	<xs:element name="ZipCode" type="T_String10"/>
+	<xs:element name="District" type="T_String20"/>
+	<xs:element name="ShipName" type="xs:string"/>
+	<xs:element name="ShipCompanyName" type="xs:string"/>
+	<xs:element name="ArrivalAirportId" type="xs:positiveInteger"/>
+	<xs:element name="ArrivalCityId" type="xs:positiveInteger"/>
+	<xs:element name="ArrivalCity" type="xs:string"/>
+	<xs:element name="DepartureAirportId" type="xs:positiveInteger"/>
+	<xs:element name="DepartureCityId" type="xs:positiveInteger"/>
+	<xs:element name="DepartureCity" type="xs:string"/>
+	<xs:element name="Time" type="T_Time"/>
+	<!-- Simple Types-->
+	<xs:simpleType name="T_Date">
+		<xs:restriction base="xs:date">
+			<xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_String10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9\-_ ]{0,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_String20">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{0,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_String40">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{0,40}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Elements-->
+	<xs:element name="TransferItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ItemId" type="xs:positiveInteger"/>
+				<xs:element ref="Date" minOccurs="0"/>
+				<xs:element ref="Passengers" minOccurs="0"/>
+				<xs:element ref="VehicleId" minOccurs="0"/>
+				<xs:element ref="LeadingPax" minOccurs="0"/>
+				<xs:element ref="PickUp" minOccurs="0"/>
+				<xs:element ref="DropOff" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LeadingPax">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="FirstName"/>
+				<xs:element ref="LastName"/>
+                <xs:element ref="Phone" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PickUp">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AirportId" minOccurs="0"/>
+				<xs:element ref="StationId" minOccurs="0"/>
+				<xs:element ref="HotelId" minOccurs="0"/>
+				<xs:element name="Address" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="2">
+							<xs:element ref="AddressLine"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ZipCode" minOccurs="0"/>
+				<xs:element ref="District" minOccurs="0"/>
+				<xs:element ref="Phone" minOccurs="0"/>
+				<xs:element ref="FlightNum" minOccurs="0"/>
+				<xs:element ref="TrainNum" minOccurs="0"/>
+				<xs:element ref="ShipName" minOccurs="0"/>
+				<xs:element ref="ShipCompanyName" minOccurs="0"/>
+				<xs:element ref="ArrivalAirportId" minOccurs="0"/>
+				<xs:element ref="ArrivalCityId" minOccurs="0"/>
+				<xs:element ref="ArrivalCity" minOccurs="0"/>
+				<xs:element ref="Time" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DropOff">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AirportId" minOccurs="0"/>
+				<xs:element ref="StationId" minOccurs="0"/>
+				<xs:element ref="HotelId" minOccurs="0"/>
+				<xs:element name="Address" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="2">
+							<xs:element ref="AddressLine"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ZipCode" minOccurs="0"/>
+				<xs:element ref="District" minOccurs="0"/>
+				<xs:element ref="Phone" minOccurs="0"/>
+				<xs:element ref="FlightNum" minOccurs="0"/>
+				<xs:element ref="TrainNum" minOccurs="0"/>
+				<xs:element ref="ShipName" minOccurs="0"/>
+				<xs:element ref="ShipCompanyName" minOccurs="0"/>
+				<xs:element ref="DepartureAirportId" minOccurs="0"/>
+				<xs:element ref="DepartureCity" minOccurs="0"/>
+				<xs:element ref="DepartureCityId" minOccurs="0"/>
+				<xs:element ref="Time" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

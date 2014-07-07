@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../order/VoucherInfoBase.xsd"/>
+    <!-- Attributes -->
+    <!-- Simple type -->
+    <!-- Simple element -->
+    <xs:element name="PolicyInfo" type="xs:string"/>
+    <xs:element name="RentConditions" type="xs:string"/>
+    <!-- Complex Type -->
+    <xs:element name="Detail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Title"/>
+                <xs:element ref="Value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CarInfo">
+        <xs:complexType>
+            <xs:sequence maxOccurs="2">
+                <xs:element ref="Detail"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DriverInfo">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element ref="Detail"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PickUp">
+        <xs:complexType>
+            <xs:sequence maxOccurs="9">
+                <xs:element ref="Detail"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DropOff">
+        <xs:complexType>
+            <xs:sequence maxOccurs="7">
+                <xs:element ref="Detail"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LocationsInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="PickUp"/>
+                <xs:element ref="DropOff"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Vehicle">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CarInfo"/>
+                <xs:element ref="DriverInfo"/>
+                <xs:element ref="LocationsInfo"/>
+                <xs:element ref="PolicyInfo"/>
+                <xs:element ref="RentConditions"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="ItemAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AdditionalDetail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Title"/>
+                <xs:element ref="Value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AdditionalDetailsList">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="AdditionalDetail"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BookingDetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Supplier" minOccurs="0"/>
+                <xs:element ref="Reference" minOccurs="0"/>
+                <xs:element ref="AdditionalDetailsList" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Voucher">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Issued"/>
+                <xs:element ref="BookingDetails" />
+                <xs:element ref="Vehicle"/>
+                <xs:element ref="AOTNumbers" minOccurs="0"/>
+                <xs:element ref="AdditionalInformation" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Complex element -->
+</xs:schema>

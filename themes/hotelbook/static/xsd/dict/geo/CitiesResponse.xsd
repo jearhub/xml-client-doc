@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="CityAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>City id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="country" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Country id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resort" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Resort id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name_ru" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Russian name of the city</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hotel_count" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:documentation>Cities have the hotels</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="has_vehicle_rent" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:documentation>Cities have the vehicle rent</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- Complex Elements -->
+	<xs:element name="City">
+		<xs:annotation>
+			<xs:documentation>City name</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attributeGroup ref="CityAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cities">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="City"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Cities"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

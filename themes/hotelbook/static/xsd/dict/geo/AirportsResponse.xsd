@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="AirportAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Airport id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gta" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Does this airport has association with airport of GTA provider (1 - yes, 0 - no)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="iata" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>IATA code</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="country" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Country id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resort" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Resort id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="city" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>City id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name_ru" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Russian name of the airport</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- Complex Elements -->
+	<xs:element name="Airport">
+		<xs:annotation>
+			<xs:documentation>Airport name</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attributeGroup ref="AirportAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Airports">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Airport"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Airports"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

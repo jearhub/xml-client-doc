@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Errors.xsd"/>
+	<!--Attributes-->
+	<!-- Simple Elements-->
+	<xs:element name="Success" type="xs:boolean"/>
+	<!-- Simple Types-->
+	<!-- Complex Elements-->
+	<xs:element name="Request1CResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Errors" minOccurs="0"/>
+				<xs:element ref="Success" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
