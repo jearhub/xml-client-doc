@@ -237,9 +237,6 @@ HotelBook существует свой уникальный идентифик�
 -----------------------------------------
 
 | Обращение происходит по /xml/tripadvisor_get_ratings и /xml/tripadvisor_get_rating_and_reviews_by_hotel
-<<<<<<< HEAD
 | Подробнее см. :doc:`Рейтинг TripAdvisor <hotels/trip-advisor-rating-list>`
 | Подробнее см. :doc:`Рейтинг и отзывы TripAdvisor <hotels/trip-advisor-hotel-reviews>`
-=======
-| Подробнее см. TripAdvisorGetRatings и TripAdvisorGetRatingsAndReviews
->>>>>>> origin/master
+
