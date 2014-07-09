@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../order/ModifyOrderBase.xsd"/>
+	<!-- Attributes -->
+	<xs:attributeGroup name="RoomPaxAttributes">
+		<xs:attribute name="child" type="xs:boolean"/>
+		<xs:attribute name="age" type="T_ChildAge"/>
+	</xs:attributeGroup>
+	<!-- Simple Elements -->
+	<xs:element name="CheckInTime" type="T_Time"/>
+	<xs:element name="CheckOutTime" type="T_Time"/>
+	<!-- Simple Types-->
+	<xs:simpleType name="T_ChildAge">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="2"/>
+			<xs:maxInclusive value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Cots">
+		<xs:restriction base="xs:integer">
+			<xs:pattern value="0|1|2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_CheckIn">
+		<xs:annotation>
+			<xs:documentation>YYYY-MM-DD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Duration">
+		<xs:annotation>
+			<xs:documentation>from 1 to 31</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Elements-->
+	<xs:element name="HotelItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ItemId" type="xs:positiveInteger"/>
+				<xs:element name="CheckIn" type="T_CheckIn"/>
+				<xs:element name="Duration" type="T_Duration"/>
+				<xs:element ref="Rooms"/>
+				<xs:element ref="CheckInTime" minOccurs="0"/>
+				<xs:element ref="CheckOutTime" minOccurs="0"/>
+				<xs:element ref="Remarks" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Remarks</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Comment" type="xs:string" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Remarks">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Remark" type="xs:string" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Remark id. E.g. "LA"</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Rooms">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="Room"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Room">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="RoomPax"/>
+			</xs:sequence>
+			<xs:attribute name="roomId" type="xs:positiveInteger"/>
+			<xs:attribute name="roomSizeId" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="roomTypeId" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="roomViewId" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="cots" type="T_Cots" use="required"/>
+			<xs:attribute name="sharingBedding" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoomPax">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="FirstName"/>
+				<xs:element ref="LastName"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="RoomPaxAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

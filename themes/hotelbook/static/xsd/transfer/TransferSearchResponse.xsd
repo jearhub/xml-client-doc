@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+	<xs:include schemaLocation="TransferSearchRequest.xsd"/>
+	<!-- Simple Types -->
+	<xs:simpleType name="T_Price">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Currency">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Types -->
+	<xs:complexType name="CT_IdName">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="id" type="xs:nonNegativeInteger"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- Attributes -->
+	<xs:attributeGroup name="TransferSearchAttributes">
+		<xs:attribute name="searchId" type="xs:positiveInteger" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PickUpDropOffSearchAttributes">
+		<xs:attribute name="countryId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="countryName" type="xs:string" use="required"/>
+		<xs:attribute name="resortId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="resortName" type="xs:string" use="required"/>
+		<xs:attribute name="cityId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="cityName" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VehicleAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="TransferAttributes">
+		<xs:attribute name="resultId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="transferName" type="xs:string" use="required"/>
+		<xs:attribute name="providerId" type="xs:positiveInteger"/>
+		<xs:attribute name="confirmation" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="onRequest|online|inaccessible"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="price" type="T_Price" use="required"/>
+		<xs:attribute name="currency" type="T_Currency" use="required"/>
+		<xs:attribute name="comparePrice" type="T_Price"/>
+		<xs:attribute name="useNds" type="xs:boolean"/>
+		<xs:attribute name="passengers" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="transferTime" type="xs:string"/>
+		<xs:attribute name="checkInTime" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="TransfersAttributes">
+		<xs:attribute name="finalResultId" type="xs:integer"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DenyNameChangesAttributes">
+		<xs:attribute name="deny" type="xs:boolean" use="required"/>
+		<xs:attribute name="from" type="xs:dateTime"/>
+		<xs:attribute name="to" type="xs:dateTime"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CancellationAmendmentAttributes">
+		<xs:attribute name="charge" type="xs:boolean" use="required"/>
+		<xs:attribute name="denyChanges" type="xs:boolean" use="required"/>
+		<xs:attribute name="from" type="xs:dateTime"/>
+		<xs:attribute name="to" type="xs:dateTime"/>
+		<xs:attribute name="price" type="T_Price"/>
+		<xs:attribute name="policy" type="xs:string"/>
+	</xs:attributeGroup>
+	<!-- Simple Elements -->
+	<xs:element name="Information" type="xs:string"/>
+	<xs:element name="TransferSearchId" type="xs:positiveInteger"/>
+	<xs:element name="Language" type="CT_IdName"/>
+	<xs:element name="Name" type="xs:string"/>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="Currency" type="T_Currency"/>
+	<!-- Complex Elements -->
+	<xs:element name="SearchPickUp">
+		<xs:complexType>
+			<xs:attributeGroup ref="PickUpDropOffSearchAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchDropOff">
+		<xs:complexType>
+			<xs:attributeGroup ref="PickUpDropOffSearchAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearch">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SearchPickUp"/>
+				<xs:element ref="SearchDropOff"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="TransferSearchAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Vehicle">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Description"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="VehicleAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ChargeConditions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Currency"/>
+				<xs:element ref="DenyNameChanges" minOccurs="0"/>
+				<xs:element ref="Cancellations" minOccurs="0"/>
+				<xs:element ref="Amendments" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DenyNameChanges">
+		<xs:complexType>
+			<xs:attributeGroup ref="DenyNameChangesAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cancellations">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Cancellation">
+					<xs:complexType>
+						<xs:attributeGroup ref="CancellationAmendmentAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Amendments">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Amendment">
+					<xs:complexType>
+						<xs:attributeGroup ref="CancellationAmendmentAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ModifyRestrictions">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="FixFrom" type="xs:boolean" />
+				<xs:element name="FixTo" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transfer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Language"/>
+				<xs:element ref="Vehicle"/>
+				<xs:element ref="PickUp"/>
+				<xs:element ref="DropOff"/>
+				<xs:element ref="Information"/>
+				<xs:element ref="ChargeConditions" minOccurs="0"/>
+				<xs:element ref="ModifyRestrictions" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="TransferAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transfers">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Transfer"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="TransfersAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearchResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TransferSearchRequest" minOccurs="0"/>
+				<xs:element ref="Errors" minOccurs="0"/>
+				<xs:element ref="TransferSearch" minOccurs="0"/>
+				<xs:element ref="TransferSearchId" minOccurs="0"/>
+				<xs:element ref="Transfers" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

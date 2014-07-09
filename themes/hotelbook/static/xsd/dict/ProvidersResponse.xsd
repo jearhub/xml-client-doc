@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="ProviderAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Provider id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_available_price_details" type="xs:positiveInteger">
+		    <xs:annotation>
+		        <xs:documentation>Is available price details for provider (1 - yes, 0 - no)</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="client_name" type="xs:string">
+		    <xs:annotation>
+		        <xs:documentation>Provider name for voucher</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hotel" type="xs:positiveInteger">
+		    <xs:annotation>
+		        <xs:documentation>Provider has this service (1 - yes, 0 - no)</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="transfer" type="xs:positiveInteger">
+		    <xs:annotation>
+		        <xs:documentation>Provider has this service (1 - yes, 0 - no)</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vehicle" type="xs:positiveInteger">
+		    <xs:annotation>
+		        <xs:documentation>Provider has this service (1 - yes, 0 - no)</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="excursion" type="xs:positiveInteger">
+		    <xs:annotation>
+		        <xs:documentation>Provider has this service (1 - yes, 0 - no)</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- Complex Elements -->
+	<xs:element name="Provider">
+		<xs:annotation>
+			<xs:documentation>Provider name</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attributeGroup ref="ProviderAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Providers">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Provider"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Providers"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

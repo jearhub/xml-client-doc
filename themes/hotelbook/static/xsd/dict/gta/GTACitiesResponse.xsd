@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../../Errors.xsd"/>
+	<!-- Attributes -->
+	<!-- Simple Types -->
+	<xs:simpleType name="T_CountryCode">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="T_CityCode">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<!-- Complex Types -->
+	<xs:element name="City">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="code" type="T_CityCode" use="required" />
+					<xs:attribute name="country" type="T_CountryCode" use="required" />
+					<xs:attribute name="utsId" type="xs:positiveInteger" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cities">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="City" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GTACitiesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Errors" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Errors list</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Cities" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Cities list</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

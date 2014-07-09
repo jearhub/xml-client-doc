@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="VehicleTransmissionAttributes">
+		<xs:attribute name="id" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Id of the vehicle drive type</xs:documentation>
+		    </xs:annotation>
+		    <xs:simpleType>
+		        <xs:restriction base="xs:string">
+		            <xs:pattern value="[A-Z0-9]"/>
+		        </xs:restriction>
+		    </xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="name_ru" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Russian name of the vehicle drive type</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name_en" type="xs:string" use="required">
+		    <xs:annotation>
+		        <xs:documentation>English name of the vehicle drive type</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="auto" use="required">
+		    <xs:annotation>
+		        <xs:documentation>Transmissions: Mechanics / Auto</xs:documentation>
+		    </xs:annotation>
+		    <xs:simpleType>
+		        <xs:restriction base="xs:integer">
+		            <xs:pattern value="0|1"/>
+		        </xs:restriction>
+		    </xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- Complex Elements -->
+	<xs:element name="VehicleTransmission">
+	    <xs:annotation>
+	        <xs:documentation>The vehicle drive type</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+		    <xs:simpleContent>
+			    <xs:extension base="xs:string">
+				    <xs:attributeGroup ref="VehicleTransmissionAttributes"/>
+			    </xs:extension>
+		    </xs:simpleContent>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="VehicleTransmissions">
+	    <xs:complexType>
+	        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+	            <xs:element ref="VehicleTransmission"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+    <xs:element name="Response">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleTransmissions"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

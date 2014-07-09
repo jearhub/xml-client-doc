@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="TransferSearchDetailsRequest.xsd"/>
+	<xs:include schemaLocation="TransferSearchResponse.xsd"/>
+	<!-- Simple Types -->
+	<!-- Complex Types -->
+	<!-- Attributes -->
+	<xs:attributeGroup name="AvailableVehiclesAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="minPassengers" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="maxPassengers" type="xs:nonNegativeInteger"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AvailableHotelsAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="forBooking" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<!-- Simple Elements -->
+	<!-- Complex Elements-->
+	<xs:element name="AvailableVehicle">
+		<xs:complexType>
+			<xs:attributeGroup ref="AvailableVehiclesAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableVehicles">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableVehicle"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableHotel">
+		<xs:complexType>
+			<xs:attributeGroup ref="AvailableHotelsAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FromHotels">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableHotel"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ToHotels">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableHotel"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableHotels">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FromHotels"/>
+				<xs:element ref="ToHotels"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearchDetails">
+		<xs:complexType>
+			<xs:sequence maxOccurs="10">
+				<xs:element ref="Transfer"/>
+				<xs:element ref="AvailableVehicles" minOccurs="0"/>
+				<xs:element ref="AvailableHotels" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearchDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TransferSearchDetailsRequest" minOccurs="0"/>
+				<xs:element ref="Errors" minOccurs="0"/>
+				<xs:element ref="TransferSearchDetails" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

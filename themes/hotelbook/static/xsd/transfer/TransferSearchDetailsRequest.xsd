@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Simple Elements -->
+	<xs:element name="SearchId" type="xs:positiveInteger"/>
+	<xs:element name="ResultId" type="xs:positiveInteger"/>
+	<!-- Complex Elements-->
+	<xs:element name="TransferSearches">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TransferSearch" maxOccurs="10"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearch">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SearchId"/>
+				<xs:element ref="ResultId"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransferSearchDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TransferSearches"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

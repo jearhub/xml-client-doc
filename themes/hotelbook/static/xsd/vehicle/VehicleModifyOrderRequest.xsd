@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../order/ModifyOrderBase.xsd"/>
+    <!-- Types -->
+    <xs:simpleType name="T_Info">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1024"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Attributes -->
+    <xs:attributeGroup name="PickUpHotelAttributes">
+        <xs:attribute name="hotelId" type="xs:positiveInteger"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PickUpHotelNameAddressAttributes">
+        <xs:attribute name="hotelName" type="xs:string" use="required"/>
+        <xs:attribute name="hotelAddress" type="xs:string" use="required"/>
+    </xs:attributeGroup>
+    <!-- Simple Elements -->
+    <!-- Complex Elements -->
+    <xs:element name="HotelInfo">
+        <xs:complexType>
+            <xs:attributeGroup ref="PickUpHotelNameAddressAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PickUpHotel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelInfo" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="PickUpHotelAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BirthDate" type="xs:date"/>
+    <xs:element name="Driver">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Title"/>
+                <xs:element ref="FirstName"/>
+                <xs:element ref="LastName"/>
+                <xs:element ref="BirthDate"/>
+                <xs:element ref="FullName" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Extras">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="Extra" type="xs:positiveInteger"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ItemId" type="xs:positiveInteger"/>
+                <xs:element name="PickUp" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="PickUpStation" type="xs:positiveInteger"/>
+                            <xs:element name="PickUpFlightNum" type="xs:string" minOccurs="0"/>
+                            <xs:element ref="PickUpHotel" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DropOff" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DropOffStation" type="xs:positiveInteger"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="Driver" minOccurs="0"/>
+                <xs:element ref="Extras" minOccurs="0"/>
+                <xs:element name="VoucherInfo" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
