@@ -6,7 +6,7 @@ Description of XML schema
 
 XSD-schema response :
 
-:download:`www/xsd/Errors.xsd <../../themes/hotelbook/static/xsd/Errors.xsd>`
+:download:`www/xsd/Errors.xsd <../themes/hotelbook/static/xsd/Errors.xsd>`
 
 
 Request path: ``/xml/errors``
