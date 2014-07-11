@@ -24,6 +24,8 @@ Hotels
     hotels/meal-breakfast
     hotels/room-amenity
     hotels/room-sizes
+    hotels/room-type
+    hotels/room-view
     hotels/trip-advisor-hotel-reviews
     hotels/trip-advisor-rating-list
     hotels/voucher-info

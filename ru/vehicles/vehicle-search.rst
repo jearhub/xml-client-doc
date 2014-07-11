@@ -6,9 +6,9 @@
 
 XSD-схемы поиска авто:
 
-:download:`www/xsd/dict/vehicle/VehicleSearchRequest.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchRequest.xsd>`
+:download:`www/xsd/vehicle/VehicleSearchRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchRequest.xsd>`
 
-:download:`www/xsd/dict/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchResponse.xsd>`
+:download:`www/xsd/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchResponse.xsd>`
 
 Асинхронный поиск авто - см. `Элемент SearchId <#h1285-20>`_
 

@@ -6,7 +6,7 @@
 
 XSD-схема описания ошибок:
 
--  ``www/xsd/Errors.xsd``
+:download:`www/xsd/Errors.xsd <../../themes/hotelbook/static/xsd/Errors.xsd>`
 
 
 Список ошибок можно посмотреть по пути: ``/xml/errors``

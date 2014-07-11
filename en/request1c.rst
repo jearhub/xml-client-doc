@@ -8,7 +8,7 @@ A request for invoice is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/Request1CResponse.xsd``
+:download:`www/xsd/Request1CResponse.xsd <../themes/hotelbook/static/xsd/Request1CResponse.xsd>`
 
 Request
 -------

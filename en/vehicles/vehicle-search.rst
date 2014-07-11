@@ -6,9 +6,9 @@ Description of XML-schema
 
 XSD-schema:
 
-:download:`www/xsd/dict/vehicle/VehicleSearchRequest.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchRequest.xsd>`
+:download:`www/xsd/vehicle/VehicleSearchRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchRequest.xsd>`
 
-:download:`www/xsd/dict/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchResponse.xsd>`
+:download:`www/xsd/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchResponse.xsd>`
 
 Asynchronous search - see `SearchId item <#h1285-20>`_
 
