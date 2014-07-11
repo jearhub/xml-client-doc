@@ -6,7 +6,7 @@
 
 Запрос на получение списка услуг отелей формируется через URL (методом GET)
 
-XSD-схема ответа: ``www/xsd/HotelFacilityResponse.xsd``
+XSD-схема ответа: :download:`www/xsd/dict/hotel/HotelFacilityResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelFacilityResponse.xsd>`
 
 Запрос списка услуг отелей
 --------------------------

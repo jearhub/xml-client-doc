@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/VehicleTransmissionsResponse.xsd``
+:download:`www/xsd/vehicle/VehicleTransmissionsResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleTransmissionsResponse.xsd>`
 
 Запрос списка типов
 -------------------

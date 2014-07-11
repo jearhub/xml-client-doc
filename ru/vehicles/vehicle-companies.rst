@@ -9,7 +9,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/VehicleCompaniesResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleCompaniesResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleCompaniesResponse.xsd>`
 
 Запрос списка компаний
 ----------------------

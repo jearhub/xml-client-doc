@@ -8,7 +8,7 @@ A request for a list of transfer locations is formed through URL (using GET meth
 
 XSD-schema response :
 
--  ``www/xsd/TransferLocationsResponse.xsd``
+:download:`www/xsd/dict/transfer/TransferLocationsResponse.xsd <../../themes/hotelbook/static/xsd/dict/transfer/TransferLocationsResponse.xsd>`
 
 Request is passed via the URL with credentials (``login``, ``password``, ``checksum``,..).
 

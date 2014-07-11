@@ -6,11 +6,11 @@ Description of XML schema
 
 XSD-schema request:
 
--  ``www/xsd/OrderListRequest.xsd``
+:download:`www/xsd/order/OrderListRequest.xsd <../../themes/hotelbook/static/xsd/order/OrderListRequest.xsd>`
 
 XSD-schema response:
 
--  ``www/xsd/OrderListResponse.xsd``
+:download:`www/xsd/order/OrderListResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderListResponse.xsd>`
 
 Request, OrderListRequest
 -------------------------
@@ -22,11 +22,16 @@ Request path: ``/xml/order_list``
     <?xml version="1.0" encoding="utf-8"?>
     <OrderListRequest>
         [<CheckInFrom>...</CheckInFrom>]
+        [<CheckInTo>...</CheckInTo>]
         [<CreatedFrom>...</CreatedFrom>]
         [<CreatedTo>...</CreatedTo>]
         [<ChangedFrom>...</ChangedFrom>]
         [<ChangedTo>...</ChangedTo>]
+        [<Agents>
+          <Agent>...<Agent>
+        </Agents>]
     </OrderListRequest>
+
 
 OrderListRequest item
 ---------------------
@@ -37,19 +42,23 @@ Parent item.
 
 **Child items:**
 
-+-------------+-----------------------------+-----------+---------------------------------------------+
-| Name        | Type                        | Mandatory | Description                                 |
-+=============+=============================+===========+=============================================+
-| CheckInFrom | Date, pattern "YYYY-MM-DD"  | no        | Vehicles with check in date, from this      |
-+-------------+-----------------------------+-----------+---------------------------------------------+
-| CreatedFrom | Date, pattern "YYYY-MM-DD"  | no        | Vehicles with creation date, from this      |
-+-------------+-----------------------------+-----------+---------------------------------------------+
-| CreatedTo   | Date, pattern "YYYY-MM-DD"  | no        | Vehicles with creation date, to this        |
-+-------------+-----------------------------+-----------+---------------------------------------------+
-| ChangedFrom | Date, pattern "YYYY-MM-DD"  | no        | Vehicles with changes, which date from this |
-+-------------+-----------------------------+-----------+---------------------------------------------+
-| ChangedTo   | date в формате "YYYY-MM-DD" | no        | Vehicles with changes, which date to this   |
-+-------------+-----------------------------+-----------+---------------------------------------------+
++---------------+------------------------------+-------------+---------------------------------------------+
+| Name          | Type                         | Mandatory   | Description                                 |
++===============+==============================+=============+=============================================+
+| CheckInFrom   | Date, pattern "YYYY-MM-DD"   | No          | Hotels with check in date, from this        |
++---------------+------------------------------+-------------+---------------------------------------------+
+| CheckInTo     | Date, pattern "YYYY-MM-DD"   | No          | Check in to                                 |
++---------------+------------------------------+-------------+---------------------------------------------+
+| CreatedFrom   | Date, pattern "YYYY-MM-DD"   | No          | Hotels with creation date, from this        |
++---------------+------------------------------+-------------+---------------------------------------------+
+| CreatedTo     | Date, pattern "YYYY-MM-DD"   | No          | Hotels with creation date, to this          |
++---------------+------------------------------+-------------+---------------------------------------------+
+| ChangedFrom   | Date, pattern "YYYY-MM-DD"   | No          | Hotels with changes, which date from this   |
++---------------+------------------------------+-------------+---------------------------------------------+
+| ChangedTo     | Date, pattern "YYYY-MM-DD"   | No          | Hotels with changes, which date to this     |
++---------------+------------------------------+-------------+---------------------------------------------+
+| Agents        | Nested                       | No          | Agents                                      |
++---------------+------------------------------+-------------+---------------------------------------------+
 
 Response, OrderListResponse
 ---------------------------
@@ -93,35 +102,20 @@ item OrderListResponse
 
 **Child items:**
 
-+-------------+--------------------------------------+----------------------------+
-| Name        | Mandatory                            | Description                |
-+=============+======================================+============================+
-| Errors      | no                                   | Список ошибок, если есть   |
-+-------------+--------------------------------------+----------------------------+
-| OrderList   | no (отсутствует, если есть ошибки)   | List of the orders         |
-+-------------+--------------------------------------+----------------------------+
++--------------------+---------------------------------------+----------------------------+
+| Name               | Mandatory                             | Description                |
++====================+=======================================+============================+
+| OrderListRequest   | No                                    | Request                    |
++--------------------+---------------------------------------+----------------------------+
+| Errors             | No                                    | List of errors             |
++--------------------+---------------------------------------+----------------------------+
+| OrderList          | No                                    | List of orders             |
++--------------------+---------------------------------------+----------------------------+
 
 item Errors
 -----------
 
-List of the errors.
-
-**Attributes:** no.
-
-**Child items:**
-
-+-------+-----------+----------------------------------------+
-| Name  | Mandatory | Description                            |
-+=======+===========+========================================+
-| Error | Yes       | Error description.                     |
-|       |           | Attributes:                            |
-|       |           |                                        |
-|       |           | -  ``code`` - error code               |
-|       |           | -  ``description`` - error description |
-+-------+-----------+----------------------------------------+
-
-
-
+View :doc:`Error page <../errors>`
 
 OrderList item
 --------------
@@ -166,15 +160,17 @@ List of items.
 
 **Attributes:**
 
-+--------------+---------------+-----------+---------------------------+
-| Name         | Type          | Mandatory | Description               |
-+==============+===============+===========+===========================+
-| Id           | numeric       | Yes       | order id                  |
-+--------------+---------------+-----------+---------------------------+
-| state        | string        | Yes       | state order               |
-+--------------+---------------+-----------+---------------------------+
-| via_xml_gate | true or false | Yes       | true - order via xml gate |
-+--------------+---------------+-----------+---------------------------+
++------------------+----------------+-------------+-----------------------------+
+| Name             | Type           | Mandatory   | Description                 |
++==================+================+=============+=============================+
+| Id               | Numeric        | Yes         | Order id                    |
++------------------+----------------+-------------+-----------------------------+
+| state            | String         | Yes         | Order status                |
++------------------+----------------+-------------+-----------------------------+
+| via\_xml\_gate   | true / false   | Yes         | true - order via xml gate   |
++------------------+----------------+-------------+-----------------------------+
+| tag              | String         | No          | order reference             |
++------------------+----------------+-------------+-----------------------------+
 
  **Child items:**
 
@@ -191,13 +187,15 @@ Vehicle description.
 
 **Attributes:**
 
-+-------+---------+-----------+------------------+
-| Name  | Type    | Mandatory | Description      |
-+=======+=========+===========+==================+
-| Id    | numeric | Yes       | order item id    |
-+-------+---------+-----------+------------------+
-| state | string  | Yes       | order item state |
-+-------+---------+-----------+------------------+
++---------+-----------+-------------+-----------------+
+| Name    | Type      | Mandatory   | Description     |
++=========+===========+=============+=================+
+| Id      | Numeric   | Yes         | Hotel item id   |
++---------+-----------+-------------+-----------------+
+| state   | String    | Yes         | Item status     |
++---------+-----------+-------------+-----------------+
+| stateId | Numeric   | No          | State id        |
++---------+-----------+-------------+-----------------+
 
 **Child items:**
 

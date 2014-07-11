@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/MealBreakfastResponse.xsd``
+- :download:`www/xsd/dict/meal/MealBreakfastResponse.xsd <../../themes/hotelbook/static/xsd/dict/meal/MealBreakfastResponse.xsd>`
 
 Запрос списка типов завтрака
 ----------------------------

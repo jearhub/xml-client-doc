@@ -8,7 +8,7 @@ A request for a voucher information is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/VoucherInfoResponse.xsd``
+:download:`www/xsd/order/VoucherInfoResponse.xsd <../../themes/hotelbook/static/xsd/order/VoucherInfoResponse.xsd>`
 
 Request
 -------
@@ -107,23 +107,7 @@ Parent item.
 Errors item
 -----------
 
-List of the errors
-
-**Attributes:** no.
-
-**Child items:**
-
-+-------------------------+-------------------------+-------------------------+
-| Name                    | Mandatory               | Description             |
-+=========================+=========================+=========================+
-| Error                   | yes                     | error description.      |
-|                         |                         |  Attributes:            |
-|                         |                         |                         |
-|                         |                         | -  ``code`` - error     |
-|                         |                         |    code                 |
-|                         |                         | -  ``description`` -    |
-|                         |                         |    error description    |
-+-------------------------+-------------------------+-------------------------+
+View :doc:`Error page <../errors>`
 
 Order item
 ----------
@@ -253,7 +237,16 @@ item Order/ItemList/Item/Voucher/Vehicle
 
 Information about vehicle.
 
-**Attributes:** no.
+**Attributes:** 
+
++-------+----------------+---------------------------+
+| Name  | Mandatory      | Description               |
++=======+================+===========================+
+| Id    | Yes            | vehicle id                |
++-------+----------------+---------------------------+
+
+
+**Child items:**
 
 +------------------+----------+-------------+--------------------------------------------------+
 | Name             | Type     | Mandatory   | Description                                      |

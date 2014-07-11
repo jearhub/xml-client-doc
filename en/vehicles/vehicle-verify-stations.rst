@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schemas:
 
--  ``www/xsd/VehicleVerifyStationsRequest.xsd``
--  ``www/xsd/VehicleVerifyStationsResponse.xsd``
+:download:`www/xsd/vehicle/VehicleVerifyStationsRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleVerifyStationsRequest.xsd>`
+
+:download:`www/xsd/vehicle/VehicleVerifyStationsResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleVerifyStationsResponse.xsd>`
 
 Request, VehicleVerifyStationsRequest
 -------------------------------------
@@ -177,36 +178,7 @@ Source request.
 Item Errors
 -----------
 
-List of the erros (Child items ``Error``).
-
-- Not Mandatory Item.
-- Attributeов no.
-
-Child items ``Errors``:
-
-+-------------+-----------------+------------------------------+
-| **Item**    | **Mandatory**   | **Description**              |
-+-------------+-----------------+------------------------------+
-| ``Error``   | yes             | Error code and description   |
-+-------------+-----------------+------------------------------+
-
-Item Error
-^^^^^^^^^^
-
-Error code and description.
-
-- Mandatory Item.
-- Child items: no.
-
-Attributeы Itemа ``Error``:
-
-+-------------------+------------+-----------------+---------------------+
-| **Attribute**     | **Type**   | **Mandatory**   | **Description**     |
-+-------------------+------------+-----------------+---------------------+
-| ``code``          | строка     | yes             | Error UTS code.     |
-+-------------------+------------+-----------------+---------------------+
-| ``description``   | строка     | yes             | Error description   |
-+-------------------+------------+-----------------+---------------------+
+View :doc:`Error page <../errors>`
 
 Item VehicleVerifyStations
 --------------------------

@@ -6,6 +6,10 @@
 
 Запрос на получение списка рейтингов формируется через URL (методом GET), передаются стандартные параметры аутентификации (login, checksum, timestamp)
 
+XSD-схема ответа :
+
+- :download:`www/xsd/dict/tripadvisor/RatingListResponse.xsd <../../themes/hotelbook/static/xsd/dict/tripadvisor/RatingListResponse.xsd>`
+
 Запрос списка рейтингов TripAdvisor
 -----------------------------------
 

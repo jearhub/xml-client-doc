@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/VehicleClassesResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleClassesResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleClassesResponse.xsd>`
 
 Запрос списка классов авто
 --------------------------

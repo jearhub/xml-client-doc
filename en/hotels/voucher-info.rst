@@ -8,7 +8,7 @@ A request for a voucher information is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/VoucherInfoResponse.xsd``
+- :download:`www/xsd/order/VoucherInfoResponse.xsd <../../themes/hotelbook/static/xsd/order/VoucherInfoResponse.xsd>`
 
 Request
 -------
@@ -113,22 +113,7 @@ Child items:
 Errors item
 -----------
 
-List of errors.
-
-Attributes: No.
-
-Child items:
-
-+-------+-----------+-----------------------------------+
-| Name  | Mandatory | Description                       |
-+=======+===========+===================================+
-| Error | Yes       | Error description.                |
-|       |           |                                   |
-|       |           | Attributes:                       |
-|       |           |                                   |
-|       |           | - code - error code               |
-|       |           | - description - error description |
-+-------+-----------+-----------------------------------+
+View :doc:`Error page <../errors>`
 
 Order item
 ----------
@@ -195,21 +180,23 @@ Attributes: No.
 
 Child items:
 
-+----------------+-----------+-------------------------------------------+
-| Name           | Mandatory | Description                               |
-+================+===========+===========================================+
-| Issued         | Yes       | Voucher date                              |
-+----------------+-----------+-------------------------------------------+
-| BookingDetails | Yes       | Details about booking                     |
-+----------------+-----------+-------------------------------------------+
-| Hotel          | Yes       | Item description (hotel description)      |
-+----------------+-----------+-------------------------------------------+
-| RoomList       | Yes       | List of reserved rooms                    |
-+----------------+-----------+-------------------------------------------+
-| HotelRemarks   | No        | Remarks                                   |
-+----------------+-----------+-------------------------------------------+
-| AOTNumbers     | No        | Contact list for emergency communications |
-+----------------+-----------+-------------------------------------------+
++-------------------------+-----------+-------------------------------------------+
+| Name                    | Mandatory | Description                               |
++=========================+===========+===========================================+
+| Issued                  | Yes       | Voucher date                              |
++-------------------------+-----------+-------------------------------------------+
+| BookingDetails          | Yes       | Details about booking                     |
++-------------------------+-----------+-------------------------------------------+
+| Hotel                   | Yes       | Item description (hotel description)      |
++-------------------------+-----------+-------------------------------------------+
+| RoomList                | Yes       | List of reserved rooms                    |
++-------------------------+-----------+-------------------------------------------+
+| HotelRemarks            | No        | Remarks                                   |
++-------------------------+-----------+-------------------------------------------+
+| AOTNumbers              | No        | Contact list for emergency communications |
++-------------------------+-----------+-------------------------------------------+
+| AdditionalInformation   | No        | Additional information                    |
++-------------------------+-----------+-------------------------------------------+
 
 Order/ItemList/Item/Voucher/BookingDetails item
 -----------------------------------------------

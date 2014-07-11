@@ -8,7 +8,7 @@ A request for a list of languages is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/LanguagesResponse.xsd``
+:download:`www/xsd/dict/LanguagesResponse.xsd <../../themes/hotelbook/static/xsd/dict/LanguagesResponse.xsd>`
 
 Request is passed via the URL with credentials (``login``, ``password``, ``checksum``,..).
 

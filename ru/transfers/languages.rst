@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/LanguagesResponse.xsd``
+:download:`www/xsd/dict/LanguagesResponse.xsd <../../themes/hotelbook/static/xsd/dict/LanguagesResponse.xsd>`
 
 Запрос списка языков
 --------------------

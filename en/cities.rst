@@ -8,7 +8,7 @@ A request for a list of cities is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/CitiesResponse.xsd``
+-  :download:`www/xsd/dict/geo/CitiesResponse.xsd <../themes/hotelbook/static/xsd/dict/geo/CitiesResponse.xsd>`
 
 Request
 -------
@@ -70,16 +70,20 @@ Optional item (absent if no city found).
 
 **Attributes:**
 
-+------------+-----------+-------------+---------------------------------------------+
-| Name       | Type      | Mandatory   | Description                                 |
-+============+===========+=============+=============================================+
-| id         | Numeric   | Yes         | city id                                     |
-+------------+-----------+-------------+---------------------------------------------+
-| country    | Numeric   | Yes         | country id (which is located city)          |
-+------------+-----------+-------------+---------------------------------------------+
-| resort     | Numeric   | Yes         | resort id                                   |
-+------------+-----------+-------------+---------------------------------------------+
-| name\_ru   | String    | Yes         | The city's name in Russian (may be empty)   |
-+------------+-----------+-------------+---------------------------------------------+
++------------------+-----------+-------------+---------------------------------------------+
+| Name             | Type      | Mandatory   | Description                                 |
++==================+===========+=============+=============================================+
+| id               | Numeric   | Yes         | city id                                     |
++------------------+-----------+-------------+---------------------------------------------+
+| country          | Numeric   | Yes         | country id (which is located city)          |
++------------------+-----------+-------------+---------------------------------------------+
+| resort           | Numeric   | Yes         | resort id                                   |
++------------------+-----------+-------------+---------------------------------------------+
+| has_vehicle_rent | Numeric   | No          | car rental                                  |
++------------------+-----------+-------------+---------------------------------------------+
+| hotel_count      | Numeric   | No          | Count of hotels                             |
++------------------+-----------+-------------+---------------------------------------------+
+| name_ru          | String    | Yes         | The city's name in Russian (may be empty)   |
++------------------+-----------+-------------+---------------------------------------------+
 
 **Child items:** no.

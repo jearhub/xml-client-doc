@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schema:
 
--  ``www/xsd/ModifyOrderRequest.xsd``
--  ``www/xsd/ModifyOrderResponse.xsd``
+:download:`www/xsd/order/ModifyOrderRequest.xsd <../../themes/hotelbook/static/xsd/order/ModifyOrderRequest.xsd>`
+
+:download:`www/xsd/order/ModifyOrderResponse.xsd <../../themes/hotelbook/static/xsd/order/ModifyOrderResponse.xsd>`
 
 After the order was created, you can modify one or more transfers in
 created order. When you modify an order, indicate order id and list of
@@ -38,6 +39,11 @@ XML-schema:
       </ContactInfo>]
       <OrderId>..</OrderId> - order id
       [<AccountComment>..</AccountComment> - Comment for the account
+      [<Partner>  - contractor
+        [<PartnerId>...</PartnerId>] - contractor id
+        [<PartnerBase>...</PartnerBase>]
+        [<PartnerName>...</PartnerName>]
+      </Partner>] 
       [<PayForm>cash|cashless</PayForm>] - order pay from
       <Items> - order items
         <TransferItem> - трансфер
@@ -136,6 +142,16 @@ Child items:
 +--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
 | ``AccountComment`` | no               | comment for the account |                       |                                          |
 +--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
+| ``Partner``        | no               | Contractor              |                       |                                          |
++--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
+|                    | **Item**         | **Mandatory**           | **Description**       |                                          |
++--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
+|                    | ``PartnerId``    | no                      | Contractor id         |                                          |
++--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
+|                    | ``PartnerBase``  | no                      | Partner base          |                                          |
++--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
+|                    | ``PartnerName``  | no                      | Partner name          |                                          |
++--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
 | ``PayForm``        | no               | New order pay form      |                       |                                          |
 +--------------------+------------------+-------------------------+-----------------------+------------------------------------------+
 | ``Items``          | yes              | Order items (hotels)    |                       |                                          |
@@ -179,6 +195,24 @@ Child items:
 +-------------+---------------+---------------------------------------+
 | ``Comment`` | yes           | comment (optional)                    |
 +-------------+---------------+---------------------------------------+
+
+Partner item
+------------
+
+Contractor
+- Attributes: no.
+
+Child items:
+
++-----------------+------------------+-------------------------------------------------+---------------------+
+| **Item**        | **Mandatory**    | **Description**                                 | **Type**            |
++=================+==================+=================================================+=====================+
+| ``PartnerId``   | no               | Contractor id                                   | String (8 chars)    |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerBase`` | no               | Partner base                                    | Numeric             |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerName`` | no               | Partner name                                    | String              |
++-----------------+------------------+-------------------------------------------------+---------------------+
 
 Items item
 ----------

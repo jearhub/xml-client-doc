@@ -6,8 +6,9 @@
 
 XSD-схемы:
 
--  ``www/xsd/VehicleStationsInfoRequest.xsd``
--  ``www/xsd/VehicleStationsInfoResponse.xsd``
+:download:`www/xsd/vehicle/VehicleStationsInfoRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleStationsInfoRequest.xsd>`
+
+:download:`www/xsd/vehicle/VehicleStationsInfoResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleStationsInfoResponse.xsd>`
 
 Запрос на получение дополнительной информации о станциях получения / возврата, VehicleStationsInfoRequest
 ---------------------------------------------------------------------------------------------------------
@@ -23,38 +24,20 @@ XML-схема запроса:
 
 ::
 
-    <?xml version="1.0" encoding="utf-8"?><VehicleStationsInfoResponse>
-    <VehicleStationsInfoRequest>... исходный запрос ...</VehicleStationsInfoRequest>
-
-      [<Errors>
-       <Error code="..." description="..."> - ошибки
-      </Errors>]
-      <VehicleStationsInfo>
-        <PickUp>     
-          <Station id=".." >
-            <Name>..</Name>
-                <Address>..</Address>
-                <Phone>..</Phone>
-                <Fax>..</Fax>
-                <OpenningHours>..</OpenningHours>
-                <HotelDelivery>..</HotelDelivery> -- доставка авто в отель
-                <OffAirport>..</OffAirport> -- обслуживание аэропорта
-              </Station>
-        </PickUp>
-        <DropOff>    
-          <Station id=".." >
-            <Name>..</Name>
-                <Address>..</Address>
-                <Phone>..</Phone>
-                <Fax>..</Fax>
-                <OpenningHours>..</OpenningHours>
-                <HotelDelivery>..</HotelDelivery> -- доставка авто в отель
-                <OffAirport>..</OffAirport> -- обслуживание аэропорта         
-              </Station>
-        </DropOff>
-      </VehicleStationsInfo>
-
-    </VehicleStationsInfoResponse>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <VehicleStationsInfoRequest>
+    <ProviderId></ProviderId>
+    <PickUp>
+       <Date></Date>
+       <Hour></Hour>
+       <Station></Station>
+    </PickUp>
+    <DropOff>
+       <Date></Date>
+       <Hour></Hour>
+       <Station></Station>
+    </DropOff>
+  </VehicleStationsInfoRequest>
 
 Элемент VehicleStationsInfoRequest
 ----------------------------------
@@ -220,36 +203,7 @@ XML-схема ответа:
 Элемент Errors
 --------------
 
-Список ошибок (дочерние элементы ``Error``).
-
-- Необязательный элемент.
-- Аттрибутов нет.
-
-Дочерние элементы ``Errors``:
-
-+-------------+------------------+---------------------------------------------------------------------------------------------------------+
-| **Элемент** | **Обязательный** | **Описание**                                                                                            |
-+=============+==================+=========================================================================================================+
-| ``Error``   | да               | Код ошибки(``code``) и описание ошибки(``description``) как аттрибуты элемента. Ошибок может быть много |
-+-------------+------------------+---------------------------------------------------------------------------------------------------------+
-
-Элемент Error
-^^^^^^^^^^^^^
-
-Код и расшифровка ошибки.
-
-- Обязательный элемент.
-- Дочерних элементов нет.
-
-Аттрибуты элемента ``Error``:
-
-+-----------------+---------+------------------+-----------------+
-| **Аттрибут**    | **Тип** | **Обязательный** | **Описание**    |
-+=================+=========+==================+=================+
-| ``code``        | строка  | да               | Код ошибки UTS. |
-+-----------------+---------+------------------+-----------------+
-| ``description`` | строка  | да               | Описание ошибки |
-+-----------------+---------+------------------+-----------------+
+Смотри страницу :doc:`Ошибки <../errors>`
 
 Элемент VehicleStationsInfo
 ---------------------------

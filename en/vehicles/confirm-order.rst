@@ -13,7 +13,7 @@ Description of XML schema
  A request is formed through URL (using GET method).
  XSD-schema response:
 
--  ``www/xsd/ConfirmOrderResponse.xsd``
+:download:`www/xsd/order/ConfirmOrderResponse.xsd <../../themes/hotelbook/static/xsd/order/ConfirmOrderResponse.xsd>`
 
 Request
 -------

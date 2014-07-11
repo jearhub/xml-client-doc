@@ -8,7 +8,8 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/HotelTypeResponse.xsd``
+- :download:`www/xsd/dict/hotel/HotelTypeResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelTypeResponse.xsd>`
+
 
 Запрос списка услуг отелей
 --------------------------

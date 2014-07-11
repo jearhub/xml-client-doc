@@ -8,7 +8,7 @@ A request for a list of locations is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/LocationResponse.xsd``
+- :download:`www/xsd/dict/geo/LocationResponse.xsd <../../themes/hotelbook/static/xsd/dict/geo/LocationResponse.xsd>`
 
 Request
 -------

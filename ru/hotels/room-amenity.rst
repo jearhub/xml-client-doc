@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/RoomAmenityResponse.xsd``
+- :download:`www/xsd/dict/room/RoomAmenityResponse.xsd <../../themes/hotelbook/static/xsd/dict/room/RoomAmenityResponse.xsd>`
 
 Запрос списка удобств номеров
 -----------------------------

@@ -8,7 +8,7 @@ A request for a list of transfer vehicles is formed through URL (using GET metho
 
 XSD-schema response :
 
--  ``www/xsd/VehicleClassesResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleClassesResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleClassesResponse.xsd>`
 
 Request
 -------

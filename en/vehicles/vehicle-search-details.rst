@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schema:
 
--  ``www/xsd/VehicleSearchDetailsRequest.xsd``
--  ``www/xsd/VehicleSearchDetailsResponse.xsd``
+:download:`www/xsd/vehicle/VehicleSearchDetailsRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchDetailsRequest.xsd>`
+
+:download:`www/xsd/vehicle/VehicleSearchDetailsResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchDetailsResponse.xsd>`
 
 Request, VehicleSearchDetailsRequest
 ------------------------------------
@@ -271,39 +272,10 @@ Source request.
 - Not Mandatory item.
 - look above (``VehicleSearchDetailsRequest``)
 
-item Errors item
+Errors item
 ----------------
 
-list of the errors (Child items ``Error``).
-
-- Not Mandatory item.
-- Attributeов no.
-
-Child items ``Errors``:
-
-+-----------+---------------+---------------------------------------------------------------+
-| **item**  | **Mandatory** | **Description**                                               |
-+===========+===============+===============================================================+
-| ``Error`` | yes           | Errors code (``code``) and error description(``description``) |
-+-----------+---------------+---------------------------------------------------------------+
-
-Error item
-^^^^^^^^^^
-
-Error code and description.
-
-- Mandatory item.
-- Child items: no.
-
-Attributes item ``Error``:
-
-+-----------------+----------+---------------+-------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**   |
-+=================+==========+===============+===================+
-| ``code``        | string   | yes           | Error UTS code.   |
-+-----------------+----------+---------------+-------------------+
-| ``description`` | string   | yes           | error description |
-+-----------------+----------+---------------+-------------------+
+View :doc:`Error page <../errors>`
 
 VehicleSearchDetails item
 ~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -8,7 +8,7 @@ A request for a list of countries is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/CountryResponse.xsd``
+-  :download:`www/xsd/dict/geo/CountriesResponse.xsd <../themes/hotelbook/static/xsd/dict/geo/CountriesResponse.xsd>`
 
 Request
 -------
@@ -25,7 +25,7 @@ Response, CountriesResponse
     <?xml version="1.0" encoding="utf-8"?>
     <Response>
         <Countries>
-            <Country id="...">...</Country> - full list of countries
+            <Country id="..." [region="..."] [iso_code="..."] [sng="..."] [shengen="..."] [flag_url="..."]>...</Country> - full list of countries
         </Countries>
     </Response>
 
@@ -59,3 +59,23 @@ Contains full list of countries.
 | Country | No        | Country name Attributes: ``id`` - country id |
 +---------+-----------+----------------------------------------------+
 
+Country item
+-----------------
+
+**Attributes:**
+
++------------+-----------+----------------------+------------------------------+
+| Attribute  | Type		 |  Mandatory           | Description                  |
++============+===========+======================+==============================+
+| id         | Число     |  Да                  | identifier                   |
++------------+-----------+----------------------+------------------------------+
+| region     | Число     |  Нет                 | region                       |
++------------+-----------+----------------------+------------------------------+
+| iso_code   | Строка    |  Нет                 | ISO-code                     |
++------------+-----------+----------------------+------------------------------+
+| sng        | Число     |  Нет                 | SNG                          |
++------------+-----------+----------------------+------------------------------+
+| shengen    | Число     |  Нет                 | shengen                      |
++------------+-----------+----------------------+------------------------------+
+| flag_url   | Строка    |  Нет                 | flag url                     |
++------------+-----------+----------------------+------------------------------+

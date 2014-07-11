@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/RoomSizesResponse.xsd``
+- :download:`www/xsd/dict/room/RoomSizesResponse.xsd <../../themes/hotelbook/static/xsd/dict/room/RoomSizesResponse.xsd>`
 
 Запрос списка размеров номеров
 ------------------------------

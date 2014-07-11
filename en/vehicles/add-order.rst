@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schema:
 
--  ``www/xsd/AddOrderRequest.xsd``
--  ``www/xsd/AddOrderResponse.xsd``
+:download:`www/xsd/order/AddOrderRequest.xsd <../../themes/hotelbook/static/xsd/order/AddOrderRequest.xsd>`
+
+:download:`www/xsd/order/AddOrderResponse.xsd <../../themes/hotelbook/static/xsd/order/AddOrderResponse.xsd>`
 
 After the vehicle was searched, you can create an order with one or
 more vehicle. When you create an order, indicate contact information:
@@ -35,6 +36,11 @@ XML-schema:
       </ContactInfo>]
       [<Tag></Tag>] - order reference (for new order)
       [<AccountComment></AccountComment>] - Comment for the account (Mandatory item if XML-client has right "View account comment")
+      [<Partner>  - contractor
+        [<PartnerId>...</PartnerId>] - contractor id
+        [<PartnerBase>...</PartnerBase>]
+        [<PartnerName>...</PartnerName>]
+      </Partner>] 
       [<OrderId></OrderId>] - order id (for adding new service to the existing order)
       <Items> - order items
         <VehicleItem> - vehicle
@@ -96,6 +102,16 @@ Child items ``AddOrderRequest``:
 +--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
 | ``AccountComment`` | yes for XML-client has       | Comment for the account |                       |                                                       |
 |                    | right "View account comment" |                         |                       |                                                       |
++--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
+| ``Partner``        | no                           | Contractor              |                       |                                                       |
++--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
+|                    | **Item**                     | **Mandatory**           | **Description**       |                                                       |
++--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
+|                    | ``PartnerId``                | no                      | Contractor id         |                                                       |
++--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
+|                    | ``PartnerBase``              | no                      | Partner base          |                                                       |
++--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
+|                    | ``PartnerName``              | no                      | Partner name          |                                                       |
 +--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
 | ``OrderId``        | yes for service adding       | order id                |                       |                                                       |
 +--------------------+------------------------------+-------------------------+-----------------------+-------------------------------------------------------+
@@ -169,6 +185,24 @@ Comment for the account.
 - Mandatory item if XML-client has right "View account comment".
 - Attributes: no.
 - Child items: no.
+
+Partner item
+------------
+
+Contractor
+- Attributes: no.
+
+Child items:
+
++-----------------+------------------+-------------------------------------------------+---------------------+
+| **Item**        | **Mandatory**    | **Description**                                 | **Type**            |
++=================+==================+=================================================+=====================+
+| ``PartnerId``   | no               | Contractor id                                   | String (8 chars)    |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerBase`` | no               | Partner base                                    | Numeric             |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerName`` | no               | Partner name                                    | String              |
++-----------------+------------------+-------------------------------------------------+---------------------+
 
 Items Item
 ----------
@@ -419,35 +453,7 @@ Child items:
 Errors item
 -----------
 
-List of errors.
-
-- Optional item.
-- Attributes: no.
-
-Child items:
-
-+-----------+---------------+-----------------------------+
-| **Item**  | **Mandatory** | **Description**             |
-+===========+===============+=============================+
-| ``Error`` | yes           | Error code with description |
-+-----------+---------------+-----------------------------+
-
-Error item
-^^^^^^^^^^
-
-Mandatory item.
-
-- Child items: no.
-
-Attributes:
-
-+-----------------+----------+---------------+-------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**   |
-+=================+==========+===============+===================+
-| ``code``        | string   | yes           | Error code UTS.   |
-+-----------------+----------+---------------+-------------------+
-| ``description`` | string   | yes           | Error description |
-+-----------------+----------+---------------+-------------------+
+View :doc:`Error page <../errors>`
 
 OrderId item
 ------------

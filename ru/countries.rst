@@ -6,7 +6,7 @@
 
 Запрос на получение списка стран формируется через URL (методом GET)
 
-XSD-схема ответа: :download:`CountriesResponse.xsd <../themes/hotelbook/static/xsd/dict/geo/CountriesResponse.xsd>`
+XSD-схема ответа: :download:`www/xsd/dict/geo/CountriesResponse.xsd <../themes/hotelbook/static/xsd/dict/geo/CountriesResponse.xsd>`
 
 
 Запрос списка стран

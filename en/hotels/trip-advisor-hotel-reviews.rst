@@ -6,6 +6,8 @@ TripAdviser rating and reviews receiver XML scheme description
 
 A request is passed via URL (the GET method) with the basic authentication parameters (login, checksum, timestamp)
 
+- :download:`www/xsd/dict/tripadvisor/HotelReviewsResponse.xsd <../../themes/hotelbook/static/xsd/dict/tripadvisor/HotelReviewsResponse.xsd>`
+
 TripAdvisor rating and reviews list request
 -------------------------------------------
 

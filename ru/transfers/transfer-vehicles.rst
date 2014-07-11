@@ -8,7 +8,8 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/TransferVehiclesResponse.xsd``
+:download:`www/xsd/dict/transfer/TransferVehiclesResponse.xsd <../../themes/hotelbook/static/xsd/transfer/TransferVehiclesResponse.xsd>`
+
 
 Запрос списка транспорта
 ------------------------

@@ -9,7 +9,7 @@ method)
 
 XSD-schema response :
 
--  ``www/xsd/ResortsResponse.xsd``
+-  :download:`www/xsd/dict/geo/ResortsResponse.xsd <../themes/hotelbook/static/xsd/dict/geo/ResortsResponse.xsd>`
 
 Request
 -------

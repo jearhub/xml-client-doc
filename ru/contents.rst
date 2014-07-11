@@ -12,3 +12,5 @@
    countries
    resorts
    request1c
+   errors
+   changelog

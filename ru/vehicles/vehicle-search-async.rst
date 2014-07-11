@@ -6,7 +6,7 @@
 
 XSD-схемы поиска авто:
 
-``www/xsd/VehicleSearchResponse.xsd``
+:download:`www/xsd/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchResponse.xsd>`
 
 Запрос на выгрузку найденных авто
 ---------------------------------

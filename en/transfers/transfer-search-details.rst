@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schema:
 
--  ``www/xsd/TransferSearchDetailsRequest.xsd``
--  ``www/xsd/TransferSearchDetailsResponse.xsd``
+:download:`www/xsd/transfer/TransferSearchDetailsRequest.xsd <../../themes/hotelbook/static/xsd/transfer/TransferSearchDetailsRequest.xsd>`
+
+:download:`www/xsd/transfer/TransferSearchDetailsResponse.xsd <../../themes/hotelbook/static/xsd/transfer/TransferSearchDetailsResponse.xsd>`
 
 Request
 -------
@@ -216,36 +217,8 @@ Source XML request.
 Errors item
 -----------
 
-List of errors.
+View :doc:`Error page <../errors>`
 
-- Optional item.
-- Attributes: no.
-
-Child items:
-
-+-----------+---------------+----------------------------+
-| **Item**  | **Mandatory** | **Description**            |
-+===========+===============+============================+
-| ``Error`` | yes           | Error code and description |
-+-----------+---------------+----------------------------+
-
-Error item
-^^^^^^^^^^
-
-Error code and description.
-
-- Mandatory item.
-- Child items: no.
-
-Attributes:
-
-+-----------------+----------+---------------+-------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**   |
-+=================+==========+===============+===================+
-| ``code``        | string   | yes           | Error code UTS.   |
-+-----------------+----------+---------------+-------------------+
-| ``description`` | string   | yes           | Error description |
-+-----------------+----------+---------------+-------------------+
 
 TransferSearchDetails item
 --------------------------

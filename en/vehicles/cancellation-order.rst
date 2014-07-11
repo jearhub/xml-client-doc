@@ -8,7 +8,7 @@ A request is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/CancellationOrderResponse.xsd``
+:download:`www/xsd/order/CancellationOrderResponse.xsd <../../themes/hotelbook/static/xsd/order/CancellationOrderResponse.xsd>`
 
 Request
 -------
@@ -38,3 +38,7 @@ Response, CancellationOrderResponse
 Response pattern is the same as in response to a request for information
 about order (``OrderInfoResponse``).
 And now you only need to check item status from response.
+
+Errros item.
+------------
+See page "Errors";

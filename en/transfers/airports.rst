@@ -20,7 +20,7 @@ Description of XML schema
 method)
  XSD-schema response :
 
--  ``www/xsd/AirportsResponse.xsd``
+:download:`www/xsd/dict/geo/AirportsResponse.xsd <../../themes/hotelbook/static/xsd/dict/geo/AirportsResponse.xsd>`
 
 Request
 -------
@@ -39,7 +39,7 @@ Response, AirportsResponse
     <?xml version="1.0" encoding="utf-8"?>
     <Response>
         <Airports>
-            <Airport id="..." iata="..." country="..." resort="..." city="..." name_ru="...">...</Airport> - full list of airports
+            <Airport id="..." iata="..." country="..." resort="..." city="..." name_ru="..." gta="...">...</Airport> - full list of airports
         </Airports>
     </Response>
 
@@ -89,6 +89,8 @@ Optional item (absent if no airport found).
 | id         | Numeric   | Yes         | Airport id                                     |
 +------------+-----------+-------------+------------------------------------------------+
 | iata       | Numeric   | Yes         | Airport IATA code                              |
++------------+-----------+-------------+------------------------------------------------+
+| gta        | Numeric   | Yes         | communications supplier GTA                    |
 +------------+-----------+-------------+------------------------------------------------+
 | country    | Numeric   | Yes         | country id (which is located airport)          |
 +------------+-----------+-------------+------------------------------------------------+

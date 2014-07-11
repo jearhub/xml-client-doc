@@ -8,7 +8,7 @@ A request for a list of categories is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/HotelFacilityResponse.xsd``
+-  :download:`www/xsd/dict/hotel/HotelFacilityResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelFacilityResponse.xsd>`
 
 Request
 -------

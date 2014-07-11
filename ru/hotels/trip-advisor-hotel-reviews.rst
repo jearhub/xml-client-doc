@@ -8,6 +8,8 @@
 (методом GET), передаются стандартные параметры аутентификации(login,
 checksum, timestamp)
 
+- :download:`www/xsd/dict/tripadvisor/HotelReviewsResponse.xsd <../../themes/hotelbook/static/xsd/dict/tripadvisor/HotelReviewsResponse.xsd>`
+
 Запрос списка рейтингов и отзывов TripAdvisor по заданному отелю
 ----------------------------------------------------------------
 

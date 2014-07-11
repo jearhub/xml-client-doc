@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/StationsResponse.xsd``
+:download:`www/xsd/dict/geo/StationsResponse.xsd <../../themes/hotelbook/static/xsd/dict/geo/StationsResponse.xsd>`
 
 Запрос списка станций
 ---------------------

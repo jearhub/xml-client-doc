@@ -33,3 +33,7 @@ If successful the query returns an element of ``Success``. Otherwise -
 the error in the ``Errors``. After the invoice in order, account
 information will be available in the request ``OrderInfo``
 (``Account_1C`` item).
+
+Errors item
+-----------
+View :doc:`Error page <../errors>`

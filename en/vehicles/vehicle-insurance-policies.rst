@@ -7,7 +7,7 @@ A request is formed through URL (using GET method).
 
 XSD-schema :
 
--  ``www/xsd/VehicleInsurancePoliciesResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleInsurancePoliciesResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleInsurancePoliciesResponse.xsd>`
 
 Request
 -------
@@ -24,12 +24,12 @@ Response, VehicleInsurancePoliciesResponse
     <?xml version="1.0" encoding="utf-8"?>
     <Response>
         <VehicleInsurancePolicies>
-            <VehicleInsurancePolicy 
-                    id="..." 
-                    name_ru="..." 
-                    description_ru="..."
-                    description_en="..."                 
-            >...</VehicleInsurancePolicy> - insurance policy
+            <VehicleInsurancePolicy id="..." name_ru="..." description_ru="..." description_en="..."> 
+                [<VehicleInsuranceEventList> - список страховых случаев
+                    [<VehicleInsuranceEvent id="..." name_ru="..." description_ru="..." description_en="...">...</VehicleInsuranceEvent>] 
+                </VehicleInsuranceEventList>]
+                <Name>...</Name>
+            </VehicleInsurancePolicy> - insurance policy
         </VehicleInsurancePolicies>
     </Response>
 
@@ -72,6 +72,48 @@ Insurance policy.
 
 **Attributes:**
 
++----------------+---------+-----------+-------------------------------------------------+
+| Name           | Type    | Mandatory | Description                                     |
++================+=========+===========+=================================================+
+| id             | numeric | Yes       | id of the insurance policy                      |
++----------------+---------+-----------+-------------------------------------------------+
+| name\_ru       | string  | Yes       | russian name of the insurance policy.           |
++----------------+---------+-----------+-------------------------------------------------+
+| desciprion\_ru | string  | Yes       | Description (russian) of the insurance policy . |
++----------------+---------+-----------+-------------------------------------------------+
+| desciprion\_en | string  | Yes       | Description (english) of the insurance policy.  |
++----------------+---------+-----------+-------------------------------------------------+
+
+**Child items:** 
+
++---------------------------+--------------+---------------------------+
+| Name                      | Mandatory    | Description               |
++===========================+==============+===========================+
+| VehicleInsuranceEventList | No           | Insurance Event List      |
++---------------------------+--------------+---------------------------+
+| Name                      | No           | Insurance policy          |
++---------------------------+--------------+---------------------------+
+
+
+VehicleInsuranceEventList item
+---------------------------------
+Insurance Event List
+
+**Attributes:** No.
+
+**Child items:**
+
++---------------------------+--------------+---------------------------+
+| Name                      | Mandatory    | Description               |
++===========================+==============+===========================+
+| VehicleInsuranceEvent     | No           | Insurance Event           |
++---------------------------+--------------+---------------------------+
+
+VehicleInsuranceEvent item
+-----------------------------
+Insurance Event
+
+**Attributes:**
 +----------------+---------+-----------+-------------------------------------------------+
 | Name           | Type    | Mandatory | Description                                     |
 +================+=========+===========+=================================================+

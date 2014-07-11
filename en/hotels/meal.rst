@@ -8,7 +8,7 @@ A request for a list of types of meals is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/MealResponse.xsd``
+- :download:`www/xsd/dict/meal/MealResponse.xsd <../../themes/hotelbook/static/xsd/dict/meal/MealResponse.xsd>`
 
 Request
 -------

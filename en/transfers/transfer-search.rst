@@ -6,8 +6,9 @@ Description of XML-schema
 
 XSD-schema:
 
--  ``www/xsd/TransferSearchRequest.xsd``
--  ``www/xsd/TransferSearchResponse.xsd``
+:download:`www/xsd/transfer/TransferSearchRequest.xsd <../../themes/hotelbook/static/xsd/transfer/TransferSearchRequest.xsd>`
+
+:download:`www/xsd/transfer/TransferSearchResponse.xsd <../../themes/hotelbook/static/xsd/transfer/TransferSearchResponse.xsd>`
 
 Asynchronous search - see `SearchId item <#h1285-20>`_
 
@@ -268,35 +269,7 @@ Source XML-request of user.
 Errors item
 -----------
 
-List of errors.
-
-- Optional item.
-- Attributes: no.
-
-Child items:
-
-+-----------+---------------+------------------------------------------------------------------------+
-| **Item**  | **Mandatory** | **Description**                                                        |
-+===========+===============+========================================================================+
-| ``Error`` | yes           | Error code(``code``) & description(``description``) as item attributes |
-+-----------+---------------+------------------------------------------------------------------------+
-
-Error item
-^^^^^^^^^^
-
-Mandatory item.
-
-- Child items: no.
-
-Attributes:
-
-+-----------------+----------+---------------+-------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**   |
-+=================+==========+===============+===================+
-| ``code``        | string   | yes           | Error code UTS    |
-+-----------------+----------+---------------+-------------------+
-| ``description`` | string   | yes           | Error description |
-+-----------------+----------+---------------+-------------------+
+View :doc:`Error page <../errors>`
 
 TransferSearch item
 -------------------
@@ -505,6 +478,10 @@ Attributes:
 +------------------+----------+---------------+----------------------------------------------------------------------------------------+
 
 Child items: no.
+
+Information item
+-------------------
+Additional information.
 
 SearchId item
 -------------

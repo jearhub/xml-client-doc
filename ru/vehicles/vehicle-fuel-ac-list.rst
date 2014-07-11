@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/VehicleFuelACListResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleFuelACListResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleFuelACListResponse.xsd>`
 
 Запрос типов авто, согласно топливной политики
 ----------------------------------------------

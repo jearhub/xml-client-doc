@@ -9,7 +9,7 @@ GET method)
 
 XSD-schema response :
 
--  ``www/xsd/VehicleCompaniesResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleCompaniesResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleCompaniesResponse.xsd>`
 
 Request
 -------

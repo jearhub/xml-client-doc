@@ -8,7 +8,7 @@ A request is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/OrderInfoResponse.xsd``
+:download:`www/xsd/order/OrderInfoResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderInfoResponse.xsd>`
 
 Request
 -------
@@ -35,6 +35,11 @@ Response, OrderInfoResponse
             <Id>...</Id> - order id
             <Tag>...</Tag> - order reference
             [<AccountComment>...</AccountComment>] - Comment for the account (Mandatory item if XML-client has right "View account comment")
+            [<Partner>  - contractor
+              [<PartnerId>...</PartnerId>] 
+              [<PartnerBase>...</PartnerBase>] 
+              [<PartnerName>...</PartnerName>] 
+            </Partner>] 
             <State>...</State> - orer status
             <CreationDate>...</CreationDate> - date and time of order creation
             <PayForm>...</PayForm> - order pay form
@@ -111,7 +116,8 @@ Response, OrderInfoResponse
               <ChargeConditions>
 
                 <Currency>..</Currency> - currency of the charges
-                <Cancellations> - штрафы при отмене
+                [<DenyNameChanges deny="..." [from="..."] [to="..."]>...</DenyNameChanges>]
+                [<Cancellations> - штрафы при отмене
                   <Cancellation - может быть несколько таких itemов
 
                     charge="true|false" - есть ли штраф
@@ -123,8 +129,8 @@ Response, OrderInfoResponse
                     [policy="1 ночь"] - policy of the charge
 
                   />
-                </Cancellations>
-                <Amendments> - amendment charges
+                </Cancellations>]
+                [<Amendments> - amendment charges
                   <Amendment - may be more one
                     charge="true|false"
 
@@ -135,7 +141,8 @@ Response, OrderInfoResponse
                     [policy=".."]
 
                   />
-                </Amendments>
+                </Amendments>]
+                [<TextCharges>...</TextCharges>]
               </ChargeConditions>
 
 
@@ -176,22 +183,7 @@ Parent item.
 Errors item
 -----------
 
-Список ошибок (если есть).
-
-**Attributes:** no.
-
-**Child items:**
-
-+-------+-----------+----------------------------------------+
-| Name  | Mandatory | Description                            |
-+=======+===========+========================================+
-| Error | yes       | Description error. Attributes:         |
-|       |           |                                        |
-|       |           | -  ``code`` - error code               |
-|       |           | -  ``description`` - error description |
-+-------+-----------+----------------------------------------+
-
-
+View :doc:`Error page <../errors>`
 
 
 item Order
@@ -212,6 +204,8 @@ Description of the order.
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | AccountComment | String                 | no        | Comment for the account (Mandatory item if XML-client has right "View account comment")                                                           |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| Partner        | Nested                 | no        | contractor                                                                                                                                        |
++----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | State          | string                 | yes       | order state (new, modified, cancelled, etc.)                                                                                                      |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | CreationDate   | YYYY-MM-DD HH:MM:SS    | yes       | Date and time of order creation (for example, 2013-01-11 12:23:00)                                                                                |
@@ -226,6 +220,24 @@ Description of the order.
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | ContactInfo    | Nested                 | yes       | Contact information about customer                                                                                                                |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Order/Partner item
+------------------
+
+Contractor
+- Attributes: no.
+
+Child items:
+
++-----------------+------------------+-------------------------------------------------+---------------------+
+| **Item**        | **Mandatory**    | **Description**                                 | **Type**            |
++=================+==================+=================================================+=====================+
+| ``PartnerId``   | no               | Contractor id                                   | String (8 chars)    |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerBase`` | no               | Partner base                                    | Numeric             |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerName`` | no               | Partner name                                    | String              |
++-----------------+------------------+-------------------------------------------------+---------------------+
 
 item Order/Account_1C
 ----------------------
@@ -583,15 +595,19 @@ Cancellation and amendment charges
 
 **Child items:**
 
-+---------------+-----------+----------------------+
-| Name          | Mandatory | Description          |
-+===============+===========+======================+
-| Currency      | yes       | Currency             |
-+---------------+-----------+----------------------+
-| Cancellations | yes       | Cancellation charges |
-+---------------+-----------+----------------------+
-| Amendments    | no        | Amendment charges    |
-+---------------+-----------+----------------------+
++-----------------+-------------+----------------------------------------+
+| Name            | Mandatory   | Description                            |
++=================+=============+========================================+
+| Currency        | Yes         | Currency                               |
++-----------------+-------------+----------------------------------------+
+| DenyNameChanges | Да          | Ability to change the names of clients |
++-----------------+-------------+----------------------------------------+
+| Cancellations   | Yes         | Cancellation charges                   |
++-----------------+-------------+----------------------------------------+
+| Amendments      | No          | Amendment charges                      |
++-----------------+-------------+----------------------------------------+
+| TextCharges     | No          | Text charges                           |
++-----------------+-------------+----------------------------------------+
 
 item Order/Items/VehicleItem/ChargeConditions/Cancellation
 ----------------------------------------------------------
@@ -612,8 +628,6 @@ Cancellation charges.
 | price  | numeric       | no        | Price (if charge=true)             |
 +--------+---------------+-----------+------------------------------------+
 | policy | string        | no        | Charge policy                      |
-+--------+---------------+-----------+------------------------------------+
-| charge | true / false  | yes       | Charge applied(true), or no(false) |
 +--------+---------------+-----------+------------------------------------+
 
 **Child items:** no.
@@ -637,8 +651,6 @@ Amendment charges.
 | price  | numeric       | no        | Price (if charge=true)              |
 +--------+---------------+-----------+-------------------------------------+
 | policy | string        | no        | Charge policy                       |
-+--------+---------------+-----------+-------------------------------------+
-| charge | true or false | yes       | Charge applied(true), or no(false)  |
 +--------+---------------+-----------+-------------------------------------+
 
  **Child items:** no.

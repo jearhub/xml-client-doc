@@ -6,8 +6,9 @@ Description of XML schema
 
 XSD-schemas:
 
--  ``www/xsd/VehicleStationsInfoRequest.xsd``
--  ``www/xsd/VehicleStationsInfoResponse.xsd``
+:download:`www/xsd/vehicle/VehicleStationsInfoRequest.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleStationsInfoRequest.xsd>`
+
+:download:`www/xsd/vehicle/VehicleStationsInfoResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleStationsInfoResponse.xsd>`
 
 Request, VehicleStationsInfoRequest
 -----------------------------------
@@ -197,36 +198,8 @@ Source request.
 Item Errors
 -----------
 
-List of the errors (Child items ``Error``).
+View :doc:`Error page <../errors>`
 
-- Not Mandatory Item.
-- Attributeов no.
-
-Child items ``Errors``:
-
-+-------------+-----------------+------------------------------+
-| **Item**    | **Mandatory**   | **Description**              |
-+-------------+-----------------+------------------------------+
-| ``Error``   | yes             | Error code and description   |
-+-------------+-----------------+------------------------------+
-
-Item Error
-^^^^^^^^^^
-
-Error code and description.
-
-- Mandatory Item.
-- Child items: no.
-
-Attributes Item ``Error``:
-
-+-----------------+----------+---------------+--------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**    |
-+=================+==========+===============+====================+
-| ``code``        | строка   | yes           | Код ошибки UTS.    |
-+-----------------+----------+---------------+--------------------+
-| ``description`` | строка   | yes           | Description ошибки |
-+-----------------+----------+---------------+--------------------+
 
 VehicleStationsInfo item
 ------------------------

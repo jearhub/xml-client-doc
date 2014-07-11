@@ -8,7 +8,7 @@ A request for a list of categories is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/HotelListResponse.xsd``
+-  :download:`www/xsd/dict/hotel/HotelListResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelListResponse.xsd>`
 
 Request
 -------
@@ -31,8 +31,11 @@ Response, HotelListResponse
     <?xml version="1.0" encoding="utf-8"?> 
     <Response>
         <HotelList>
-            <Hotel name="..." id="..." city="..." cat="..." updated="..." date_create="..." assoc="0|1"> - full list of hotels
+            <Hotel name="..." id="..." city="..." cat="..." updated="..." date_create="..." assoc="0|1" utsluxury="0|1" hotelLatitude="..." hotelLongitude="..."> - full list of hotels
         </HotelList>
+        [<Errors>
+        	<Error [type="..."] [code="..."] description="..."> - errors
+      	</Errors>]
     </Response>
 
 Response item
@@ -48,6 +51,8 @@ Parent item.
 | Name        | Mandatory   | Description      |
 +=============+=============+==================+
 | HotelList   | Yes         | List of hotels   |
++-------------+-------------+------------------+
+| Errors      | No          | Errors           |
 +-------------+-------------+------------------+
 
 HotelList item
@@ -91,5 +96,16 @@ Optional item (absent if no hotels found).
 +----------------+---------------------------------------------+-----------+------------------------------------------+
 | assoc          | 0 or 1                                      | Yes       | Has any association with providers       |
 +----------------+---------------------------------------------+-----------+------------------------------------------+
+| utsluxury      | 0 or 1                                      | Yes       | hotel category (mark)                    |
++----------------+---------------------------------------------+-----------+------------------------------------------+
+| hotelLatitude  | String                                      | Yes       | Latitude                                 |
++----------------+---------------------------------------------+-----------+------------------------------------------+
+| hotelLongitude | String                                      | Yes       | Longitude                                |
++----------------+---------------------------------------------+-----------+------------------------------------------+
 
 **Hotel items:** no.
+
+Errors item
+-------------
+
+View :doc:`Error page <../errors>`

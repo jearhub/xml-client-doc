@@ -8,7 +8,7 @@ A request for a list of categories is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/OrderItemInfoResponse.xsd``
+- :download:`www/xsd/order/OrderItemInfoResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderItemInfoResponse.xsd>`
 
 Request
 -------
@@ -147,22 +147,8 @@ Parent item.
 Errors item
 -----------
 
-List of errors.
+View :doc:`Error page <../errors>`
 
-**Attributes:** No.
-
-**Child items:**
-
-+-------+-----------+---------------------------------------+
-| Name  | Mandatory | Description                           |
-+=======+===========+=======================================+
-| Error | Yes       | Error description.                    |
-|       |           |                                       |
-|       |           | Attributes:                           |
-|       |           |                                       |
-|       |           | - ``code`` - error code               |
-|       |           | - ``description`` - error description |
-+-------+-----------+---------------------------------------+
 
 Items item
 ----------

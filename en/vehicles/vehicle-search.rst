@@ -6,8 +6,9 @@ Description of XML-schema
 
 XSD-schema:
 
--  ``www/xsd/VehicleSearchRequest.xsd``
--  ``www/xsd/VehicleSearchResponse.xsd``
+:download:`www/xsd/dict/vehicle/VehicleSearchRequest.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchRequest.xsd>`
+
+:download:`www/xsd/dict/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/dict/vehicle/VehicleSearchResponse.xsd>`
 
 Asynchronous search - see `SearchId item <#h1285-20>`_
 
@@ -285,36 +286,7 @@ Source request.
 item Errors
 -----------
 
-List of the errors (Child items ``Error``).
-
-- Not Mandatory item.
-- Attributeов no.
-
-Child items ``Errors``:
-
-+-----------+---------------+------------------------------------------------------------------------+
-| **item**  | **Mandatory** | **Description**                                                        |
-+===========+===============+========================================================================+
-| ``Error`` | yes           | Error code(``code``) & description(``description``) as item attributes |
-+-----------+---------------+------------------------------------------------------------------------+
-
-Error item
-^^^^^^^^^^
-
-Description and code of the error
-
-- Mandatory item.
-- Child items: no.
-
-Attributes itemа ``Error``:
-
-+-----------------+----------+---------------+-------------------+
-| **Attribute**   | **Type** | **Mandatory** | **Description**   |
-+=================+==========+===============+===================+
-| ``code``        | string   | yes           | Error code UTS.   |
-+-----------------+----------+---------------+-------------------+
-| ``description`` | string   | yes           | Error description |
-+-----------------+----------+---------------+-------------------+
+View :doc:`Error page <../errors>`
 
 VehicleSearch item
 ------------------

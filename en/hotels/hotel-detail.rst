@@ -6,7 +6,7 @@ Description of XML schema
 
 A request is formed through URL (using GET method) XSD-schema response :
 
--  ``www/xsd/HotelDetailResponse.xsd``
+-  :download:`www/xsd/dict/hotel/HotelDetailResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelDetailResponse.xsd>`
 
 Request
 -------
@@ -28,7 +28,7 @@ Response, HotelDetailResponse
 
     <?xml version="1.0" encoding="utf-8"?>
     <Response>
-        [<Errors><Error code="..." desctiption="error text"></Errors>]
+        [<Errors><Error [type="..."] [code="..."] desctiption="error text"></Errors>]
         <HotelDetail id="..." name="hotel name">
             <Country id="...">country name</Country>
             <City id="...">city name</City>
@@ -100,6 +100,13 @@ Parent item.
 +===============+=============+===============+
 | HotelDetail   | Yes         | Information   |
 +---------------+-------------+---------------+
+| Errors        | No          | Errors        |
++---------------+-------------+---------------+
+
+Errors item
+----------------
+View :doc:`Error page <../errors>`
+
 
 HotelDetail item
 ----------------

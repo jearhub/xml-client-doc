@@ -110,77 +110,81 @@ Search hotels request
 ---------------------
 
 | Address - /xml/hotel_search.
-| For details see HotelSearch.htm
+| For details see :doc:`Search hotels <hotels/hotel-search>`
 
 Asynchronous search hotels request
 ----------------------------------
 
 | Address - /xml/hotel_search?async=1 (parameter ?async=1).
 | Request /xml/hotel_search_async?login=&search_id= returns found to date hotels.
-| For details see HotelSearch.htm
+| For details see :doc:`Search hotels <hotels/hotel-search>`
 
 Request additional search details (prices, cancellation policies)
 -----------------------------------------------------------------
 
 | Address - /xml/hotel_search_details
-| For details see HotelSearchDetails.htm
+| For details see :doc:`Search details <hotels/hotel-search-details>`
 
 Create order  (or add new hotel to the order)
 ---------------------------------------------
 
 | Address - /xml/add_order
-| For details see AddOrder.htm
+| For details see :doc:`Create order <hotels/add-order>`
 | To send order for processing it you must confirm order
 
 Modify order (modify existing elements)
 ---------------------------------------
 
 | Address -  /xml/modify_order
-| For details see ModifyOrder.htm
+| For details see :doc:`Modify order <hotels/modify-order>`
 | To send changings for processing them you must confirm order
 
 Confirm order (booking)
 -----------------------
 
 | Address - /xml/confirm_order
-| For details see ConfirmOrder.htm
+| For details see :doc:`Confirm order <hotels/confirm-order>`
 
 Order information
 -----------------
 
 | Address - /xml/order_info
-| For details see OrderInfo.htm
+| For details see :doc:`Order information <hotels/order-info>`
 
 Order item(hotel) information
 -----------------------------
 
 | Address - /xml/order_item_info
-| For details see OrderItemInfo.htm
+| For details see :doc:`Order item(hotel) information <hotels/order-item-info>`
 | Cancellation order
 
+Cancellation Order
+------------------
+
 | Address - /xml/cancellation_order
-| For details see CancellationOrder.htm
+| For details see :doc:`Cancellation Order <hotels/cancellation-order>`
 
 Orders list
 -----------
 
 | Address - /xml/order_list
-| For details see OrderList.htm
+| For details see :doc:`Orders list <hotels/order-list>`
 
 Voucher information about order
 -------------------------------
 
 | Address - /xml/voucher_info
-| For details see VoucherInfo.htm
+| For details see :doc:`Voucher information <hotels/voucher-info>`
 
 Billing 1C
 ----------
 
 | Address - /xml/request_1c
-| For details see Request1C.htm
+| For details see :doc:`Billing 1C <request1c>`
 
 TripAdvisor ratings and reviews
 -------------------------------
 
 | Addresses: /xml/tripadvisor_get_ratings and /xml/tripadvisor_get_rating_and_reviews_by_hotel
-| For details see TripAdvisorGetRatings и TripAdvisorGetRatingsAndReviews
+| :doc:`Rating TripAdvisor <hotels/trip-advisor-rating-list>`
+| :doc:`Ratings and reviews TripAdvisor <hotels/trip-advisor-hotel-reviews>`

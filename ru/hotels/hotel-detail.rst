@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/HotelDetailResponse.xsd``
+- :download:`www/xsd/dict/hotel/HotelDetailResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelDetailResponse.xsd>`
 
 Запрос информации об отеле
 --------------------------
@@ -30,7 +30,7 @@ XSD-схема ответа :
     <?xml version="1.0" encoding="utf-8"?>
     <Response>
         [<Errors><Error code="..." desctiption="описание ошибки"></Errors>]
-        <HotelDetail id="..." name="название отеля">
+        [<HotelDetail id="..." name="название отеля">
             <Country id="...">название страны</Country>
             <City id="...">название города</City>
             <Cat id="...">категория</Cat>
@@ -84,7 +84,7 @@ XSD-схема ответа :
             <GTAHotelCode>код отеля</GTAHotelCode>
             <GTACityCode>код города</GTACityCode>
             <Updated>дата обновления</Updated>
-        </HotelDetail>
+        </HotelDetail>]
     </Response>
 
 Элемент Response
@@ -99,8 +99,15 @@ XSD-схема ответа :
 +-------------+--------------+----------------------------+
 | Имя         | Обязательный | Описание                   |
 +=============+==============+============================+
-| HotelDetail | Да           | Информация о заданом отеле |
+| HotelDetail | Нет          | Информация о заданом отеле |
 +-------------+--------------+----------------------------+
+| Errors      | Нет          | Ошибки                     |
++-------------+--------------+----------------------------+
+
+Элемент Errors
+----------------
+Смотри страницу :doc:`Ошибки <../errors>`
+
 
 Элемент HotelDetail
 -------------------

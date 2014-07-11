@@ -8,7 +8,7 @@ A request for a list of stations is formed through URL (using GET method)
 
 XSD-schema response :
 
--  ``www/xsd/StationsResponse.xsd``
+:download:`www/xsd/dict/geo/StationsResponse.xsd <../../themes/hotelbook/static/xsd/dict/geo/StationsResponse.xsd>`
 
 Request
 -------

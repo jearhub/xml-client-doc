@@ -10,7 +10,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/TransferLocationsResponse.xsd``
+:download:`www/xsd/dict/transfer/TransferLocationsResponse.xsd <../../themes/hotelbook/static/xsd/dict/transfer/TransferLocationsResponse.xsd>`
 
 Запрос типов локаций трансфера
 ------------------------------

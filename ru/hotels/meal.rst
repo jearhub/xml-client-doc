@@ -8,7 +8,7 @@
 
 XSD-схема ответа :
 
--  ``www/xsd/MealResponse.xsd``
+- :download:`www/xsd/dict/meal/MealResponse.xsd <../../themes/hotelbook/static/xsd/dict/meal/MealResponse.xsd>`
 
 Запрос списка типов питания
 ---------------------------

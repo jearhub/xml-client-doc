@@ -6,11 +6,11 @@ Description of XML schema
 
 XSD-schema request:
 
--  ``www/xsd/OrderListRequest.xsd``
+:download:`www/xsd/order/OrderListRequest.xsd <../../themes/hotelbook/static/xsd/order/OrderListRequest.xsd>`
 
 XSD-schema response:
 
--  ``www/xsd/OrderListResponse.xsd``
+:download:`www/xsd/order/OrderListResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderListResponse.xsd>`
 
 Request
 -------
@@ -22,10 +22,14 @@ Request path: ``/xml/order_list``
     <?xml version="1.0" encoding="utf-8"?>
     <OrderListRequest>
         [<CheckInFrom>...</CheckInFrom>]
+        [<CheckInTo>...</CheckInTo>]
         [<CreatedFrom>...</CreatedFrom>]
         [<CreatedTo>...</CreatedTo>]
         [<ChangedFrom>...</ChangedFrom>]
         [<ChangedTo>...</ChangedTo>]
+        [<Agents>
+          <Agent>...<Agent>
+        </Agents>]
     </OrderListRequest>
 
 OrderListRequest item
@@ -42,6 +46,8 @@ Parent item.
 +=============+============================+===========+==============================================+
 | CheckInFrom | Date, pattern "YYYY-MM-DD" | No        | Transfers with check in date, from this      |
 +-------------+----------------------------+-----------+----------------------------------------------+
+| CheckInTo   | Date, pattern "YYYY-MM-DD" | No        | Check in to                                  |
++-------------+----------------------------+-----------+----------------------------------------------+
 | CreatedFrom | Date, pattern "YYYY-MM-DD" | No        | Transfers with creation date, from this      |
 +-------------+----------------------------+-----------+----------------------------------------------+
 | CreatedTo   | Date, pattern "YYYY-MM-DD" | No        | Transfers with creation date, to this        |
@@ -49,6 +55,8 @@ Parent item.
 | ChangedFrom | Date, pattern "YYYY-MM-DD" | No        | Transfers with changes, which date from this |
 +-------------+----------------------------+-----------+----------------------------------------------+
 | ChangedTo   | Date, pattern "YYYY-MM-DD" | No        | Transfers with changes, which date to this   |
++-------------+----------------------------+-----------+----------------------------------------------+
+| Agents      | Nested                     | No        | Agents                                       |
 +-------------+----------------------------+-----------+----------------------------------------------+
 
 Response, OrderListResponse
@@ -65,13 +73,17 @@ Response, OrderListResponse
         <Orders agent="..."> - list of orders
           <Order id="..." state="..." via_xml_gate="true|false"> - list of items
         <TransferItem id="..." state="...">
-          <Date>...</Date>
-          <Created>...</Created>
-          <FromCity>...</FromCity>
-          <ToCity>...</ToCity>
-          <FromLocation>...</FromLocation>
-          <ToLocation>...</ToLocation>
-          <Description>...</Description>
+              <Date>...</Date>
+              <Created>...</Created>
+              [<Vehicle></Vehicle>]
+              [<Passengers></Passengers>]
+              <FromCity>...</FromCity>
+              <ToCity>...</ToCity>
+              <FromLocation>...</FromLocation>
+              <ToLocation>...</ToLocation>
+              <Description>...</Description>
+              [<Price></Price>]
+              [<Currency></Currency>]
           <Logs>
               <Log>...</Log>
           </Logs>
@@ -90,37 +102,20 @@ Parent item.
 
 **Child items:**
 
-+-------------+-------------+------------------+
-| Name        | Mandatory   | Description      |
-+=============+=============+==================+
-| Errors      | No          | List of errors   |
-+-------------+-------------+------------------+
-| OrderList   | No          | List of orders   |
-+-------------+-------------+------------------+
++--------------------+---------------------------------------+----------------------------+
+| Name               | Mandatory                             | Description                |
++====================+=======================================+============================+
+| OrderListRequest   | No                                    | Request                    |
++--------------------+---------------------------------------+----------------------------+
+| Errors             | No                                    | List of errors             |
++--------------------+---------------------------------------+----------------------------+
+| OrderList          | No                                    | List of orders             |
++--------------------+---------------------------------------+----------------------------+
 
 Errors item
 -----------
 
-List of errors.
-
-**Attributes:** No.
-
-**Child items:**
-
-+-------+-----------+----------------------------------------+
-| Name  | Mandatory | Description                            |
-+=======+===========+========================================+
-| Error | Yes       | Description.                           |
-|       |           |                                        |
-|       |           | Attributes:                            |
-|       |           |                                        |
-|       |           | -  ``code`` - error code               |
-|       |           | -  ``description`` - error description |
-+-------+-----------+----------------------------------------+
-
-
-
-
+View :doc:`Error page <../errors>`
 
 OrderList item
 --------------
@@ -174,6 +169,8 @@ List of items.
 +--------------+--------------+-----------+---------------------------+
 | via_xml_gate | true / false | Yes       | true - order via xml gate |
 +--------------+--------------+-----------+---------------------------+
+| tag          | String       | No        | order reference           |
++--------------+--------------+-----------+---------------------------+
 
 **Child items:**
 
@@ -190,13 +187,15 @@ Item description.
 
 **Attributes:**
 
-+-------+---------+-----------+------------------+
-| Name  | Type    | Mandatory | Description      |
-+=======+=========+===========+==================+
-| Id    | Numeric | Yes       | Transfer item id |
-+-------+---------+-----------+------------------+
-| state | String  | Yes       | Item status      |
-+-------+---------+-----------+------------------+
++---------+-----------+-------------+-----------------+
+| Name    | Type      | Mandatory   | Description     |
++=========+===========+=============+=================+
+| Id      | Numeric   | Yes         | Hotel item id   |
++---------+-----------+-------------+-----------------+
+| state   | String    | Yes         | Item status     |
++---------+-----------+-------------+-----------------+
+| stateId | Numeric   | No          | State id        |
++---------+-----------+-------------+-----------------+
 
 **Child items:**
 
@@ -207,6 +206,10 @@ Item description.
 +--------------+----------------------------+-----------+----------------------+
 | Created      | Date                       | Yes       | Date create          |
 +--------------+----------------------------+-----------+----------------------+
+| Vehicle      | Numeric                    | Yes       | Vehicle              |
++--------------+----------------------------+-----------+----------------------+
+| Passengers   | Numeric                    | No        | Passengers           |
++--------------+----------------------------+-----------+----------------------+
 | FromCity     | Numeric                    | Yes       | Pick up city id      |
 +--------------+----------------------------+-----------+----------------------+
 | ToCity       | Numeric                    | Yes       | Drop off city id     |
@@ -216,6 +219,12 @@ Item description.
 | ToLocation   | string                     | Yes       | Drop off point type  |
 +--------------+----------------------------+-----------+----------------------+
 | Description  | string                     | Yes       | Transfer description |
++--------------+----------------------------+-----------+----------------------+
+| Price        | Numeric                    | No        | Price                |
++--------------+----------------------------+-----------+----------------------+
+| Currency     | string                     | No        | Currency             |
++--------------+----------------------------+-----------+----------------------+
+| Logs         | list of Log                | No        | History              |
 +--------------+----------------------------+-----------+----------------------+
 
 Orders/Order/TransferItem/Logs item

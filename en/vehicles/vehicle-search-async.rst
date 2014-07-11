@@ -6,7 +6,7 @@ XML-schemas
 
 XSD-schemas:
 
-``www/xsd/VehicleSearchResponse.xsd``
+:download:`www/xsd/vehicle/VehicleSearchResponse.xsd <../../themes/hotelbook/static/xsd/vehicle/VehicleSearchResponse.xsd>`
 
 Request for downloading of found vehicles
 -----------------------------------------

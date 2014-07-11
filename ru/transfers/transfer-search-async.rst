@@ -6,7 +6,7 @@
 
 XSD-схемы поиска трансферов:
 
-``www/xsd/TransferSearchResponse.xsd``
+:download:`www/xsd/transfer/TransferSearchResponse.xsd <../../themes/hotelbook/static/xsd/transfer/TransferSearchResponse.xsd>`
 
 Запрос на выгрузку найденных трансферов
 ---------------------------------------

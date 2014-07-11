@@ -6,7 +6,7 @@
 
 Запрос на получение списка категорий отелей формируется через URL (методом GET)
 
-XSD-схема ответа: ``www/xsd/HotelCatResponse.xsd``
+XSD-схема ответа: :download:`www/xsd/dict/hotel/HotelCatResponse.xsd <../../themes/hotelbook/static/xsd/dict/hotel/HotelCatResponse.xsd>`
 
 Запрос списка категорий отелей
 ------------------------------

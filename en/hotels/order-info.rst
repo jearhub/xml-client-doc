@@ -8,7 +8,7 @@ A request is formed through URL (using GET method).
 
 XSD-schema response:
 
--  ``www/xsd/OrderInfoResponse.xsd``
+- :download:`www/xsd/order/OrderInfoResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderInfoResponse.xsd>`
 
 Request
 -------
@@ -34,7 +34,12 @@ Response, OrderInfoResponse
 
                 <Id>...</Id> - order id
                 <Tag>...</Tag> - order reference
-            [<AccountComment>...</AccountComment>] - Comment for the account (Mandatory item if XML-client has right "View account comment")
+                [<AccountComment>...</AccountComment>] - Comment for the account (Mandatory item if XML-client has right "View account comment")
+                [<Partner>  - contractor
+                  [<PartnerId>...</PartnerId>] 
+                  [<PartnerBase>...</PartnerBase>] 
+                  [<PartnerName>...</PartnerName>] 
+                </Partner>] 
                 <State>...</State> - order status
                 <CreationDate>...</CreationDate> - date and time of order creation
                 <PayForm>...</PayForm> - order pay form
@@ -71,6 +76,9 @@ Response, OrderInfoResponse
                     <SpecialOfferText>...</SpecialOfferText>
                     <ProviderId>...</ProviderId> - provider id
                     <ProviderReference>...</ProviderReference> - provider reference
+                    [<PossibleRemarks>
+                      <Remark code="..."></Remark>
+                    </PossibleRemarks>]
                     <PermittedOperations> - list of permitted operations for order item
                         <Edit>true|false</Edit> - can be edited or not
                         <Cancel>true|false</Cancel> - can be cancellated or not
@@ -113,7 +121,8 @@ Response, OrderInfoResponse
                     <ChargeConditions>
 
                       <Currency>..</Currency> - currency
-                      <Cancellations> - cancellation charges
+                      [<DenyNameChanges deny="..." [from="..."] [to="..."]>...</DenyNameChanges>]
+                      [<Cancellations> - cancellation charges
                         <Cancellation 
 
                           charge="true|false" 
@@ -125,8 +134,8 @@ Response, OrderInfoResponse
                           [policy="1 night"] - charge policy
 
                         />
-                      </Cancellations>
-                      <Amendments> - amendment charges
+                      </Cancellations>]
+                      [<Amendments> - amendment charges
                         <Amendment 
                           charge="true|false"
 
@@ -137,7 +146,8 @@ Response, OrderInfoResponse
                           [policy=".."]
 
                         />
-                      </Amendments>
+                      </Amendments>]
+                      [<TextCharges></TextCharges>]
                     </ChargeConditions>
 
                     <PriceDetails> - price breakdown
@@ -148,8 +158,9 @@ Response, OrderInfoResponse
 
                         <Room - 
                           roomNumber=".." - number of rooms
-                          roomName="..."
-
+                          roomSizeId=".."
+                          roomTypeId=".."
+                          roomViewId=".."
                           child="0|1" - number of children
 
                          [cots="1|2"] - number of cots (optional)
@@ -210,22 +221,8 @@ Parent item.
 Errors item
 -----------
 
-List of errors.
+View :doc:`Error page <../errors>`
 
-**Attributes:** No.
-
-**Child items:**
-
-+-------+-----------+---------------------------------------+
-| Name  | Mandatory | Description                           |
-+=======+===========+=======================================+
-| Error | Yes       | Error description.                    |
-|       |           |                                       |
-|       |           | Attributes:                           |
-|       |           |                                       |
-|       |           | - ``code`` - error code               |
-|       |           | - ``description`` - error description |
-+-------+-----------+---------------------------------------+
 
 Order item
 ----------
@@ -245,13 +242,15 @@ Order description.
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | AccountComment | String                 | No        | Comment for the account (Mandatory item if XML-client has right "View account comment")                                                           |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| Partner        | Nested                 | No        | contractor                                                                                                                                        |
++----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | State          | String                 | Yes       | Order status (new, modified, cancelled, etc.)                                                                                                     |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | CreationDate   | YYYY-MM-DD HH:MM:SS    | Yes       | Date and time of order creation (for example, 2013-01-11 12:23:00)                                                                                |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | PayForm        | String                 | Yes       | Order pay form (cash, cashless, undefined). If order elements have different pay form (it's possible for old orders), order pay form is undefined |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-| Account_1C    | List of Document items | No        | Account information 1C                                                                                                                            |
+| Account_1C     | List of Document items | No        | Account information 1C                                                                                                                            |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | Paxes          | List                   | Yes       | List of paxes in order                                                                                                                            |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -260,8 +259,26 @@ Order description.
 | ContactInfo    | Nested                 | Yes       | Contact information about customer                                                                                                                |
 +----------------+------------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
+Order/Partner item
+------------------
+
+Contractor
+- Attributes: no.
+
+Child items:
+
++-----------------+------------------+-------------------------------------------------+---------------------+
+| **Item**        | **Mandatory**    | **Description**                                 | **Type**            |
++=================+==================+=================================================+=====================+
+| ``PartnerId``   | no               | Contractor id                                   | String (8 chars)    |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerBase`` | no               | Partner base                                    | Numeric             |
++-----------------+------------------+-------------------------------------------------+---------------------+
+| ``PartnerName`` | no               | Partner name                                    | String              |
++-----------------+------------------+-------------------------------------------------+---------------------+
+
 Order/Account_1C item
-----------------------
+---------------------
 
 List of accounting documents
 
@@ -357,55 +374,59 @@ List of order items.
 
 **Child items:**
 
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Name              | Type                       | Mandatory | Description                                         |
-+===================+============================+===========+=====================================================+
-| HotelId           | Numeric                    | Yes       | hotel id                                            |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| CityId            | Numeric                    | Yes       | city id                                             |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Name              | String                     | Yes       | Hotel name                                          |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| CategoryId        | Numeric                    | Yes       | Hotel category id                                   |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| State             | Numeric                    | Yes       | Status (new, processed, confirmed, cancelled, etc.) |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| CheckIn           | Date, pattern "YYYY-MM-DD" | Yes       | Check in date                                       |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Duration          | Numeric                    | Yes       | Duration (nights)                                   |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| TotalPrice        | Numeric                    | Yes       | Price                                               |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| ExtraPrice        | Numeric                    | Yes       | Provider additional margin                          |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Fee               | Numeric                    | Yes       | Fee price (if exists)                               |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Currency          | String                     | Yes       | Currency                                            |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| HotelPaid         | true / false               | Yes       | Paid                                                |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| UseNds            | true / false               | No        | VAT included                                        |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| SpecialOfferText  | String                     | Yes       | Special offer text                                  |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| SpecialOffers     | List of special offers     | Yes       | List of hotel's special offers                      |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| ProviderId        | Numeric                    | Yes       | provider id                                         |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| ProviderReference | String                     | Yes       | provider reference                                  |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| EditableOptions   | List of options            | Yes       | List of editable hotel options                      |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| RoomLocks         | List of rooms              | Yes       | List of hotel rooms, locked for modification        |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Rooms             | List of rooms              | Yes       | List of rooms                                       |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| Remarks           | List of remarks            | Yes       | List of remarks                                     |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| ChargeConditions  | Nested                     | No        | Charge conditions                                   |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
-| PriceDetails      | Nested                     | No        | Price breakdown                                     |
-+-------------------+----------------------------+-----------+-----------------------------------------------------+
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Name                  | Type                       | Mandatory | Description                                         |
++=======================+============================+===========+=====================================================+
+| HotelId               | Numeric                    | Yes       | hotel id                                            |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| CityId                | Numeric                    | Yes       | city id                                             |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Name                  | String                     | Yes       | Hotel name                                          |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| CategoryId            | Numeric                    | Yes       | Hotel category id                                   |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| State                 | Numeric                    | Yes       | Status (new, processed, confirmed, cancelled, etc.) |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| CheckIn               | Date, pattern "YYYY-MM-DD" | Yes       | Check in date                                       |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Duration              | Numeric                    | Yes       | Duration (nights)                                   |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| TotalPrice            | Numeric                    | Yes       | Price                                               |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| ExtraPrice            | Numeric                    | Yes       | Provider additional margin                          |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Fee                   | Numeric                    | Yes       | Fee price (if exists)                               |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Currency              | String                     | Yes       | Currency                                            |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| HotelPaid             | true / false               | Yes       | Paid                                                |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| UseNds                | true / false               | No        | VAT included                                        |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| SpecialOfferText      | String                     | Yes       | Special offer text                                  |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| SpecialOffers         | List of special offers     | Yes       | List of hotel's special offers                      |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| ProviderId            | Numeric                    | Yes       | provider id                                         |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| ProviderReference     | String                     | Yes       | provider reference                                  |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| PossibleRemarks       | List of Remark             | No        | Possible remarks                                    |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| PermittedOperations   | Nested                     | No        | Permitted operations                                |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| EditableOptions       | List of options            | Yes       | List of editable hotel options                      |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| RoomLocks             | List of rooms              | Yes       | List of hotel rooms, locked for modification        |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Rooms                 | List of rooms              | Yes       | List of rooms                                       |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| Remarks               | List of remarks            | Yes       | List of remarks                                     |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| ChargeConditions      | Nested                     | No        | Charge conditions                                   |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
+| PriceDetails          | Nested                     | No        | Price breakdown                                     |
++-----------------------+----------------------------+-----------+-----------------------------------------------------+
 
 Order/Items/HotelItem/ExtraPrice item
 -------------------------------------
@@ -460,6 +481,22 @@ Time out of the hotel rooms
 
 **Child items:** No.
 
+Order/Items/HotelItem/PermittedOperations item
+----------------------------------------------
+Permitted operations.
+
+**Child items:**
+
++------------+--------------+----------------------------------------------------------------------------+
+| Name       | Mandatory    | Description                                                                |
++============+==============+============================================================================+
+| Edit       | No           | Edit                                                                       |
++------------+--------------+----------------------------------------------------------------------------+
+| Cancel     | No           | Cancel                                                                     |
++------------+--------------+----------------------------------------------------------------------------+
+| IsBlocked  | No           | Is blocked                                                                 |
++------------+--------------+----------------------------------------------------------------------------+
+
 Order/Items/HotelItem/SpecialOffers/SpecialOffer
 ------------------------------------------------
 
@@ -470,25 +507,25 @@ Hotel special offer
 +----------+--------+-----------+--------------------------------+
 | Name     | Type   | Mandatory | Description                    |
 +==========+========+===========+================================+
-| text     | String | Yes       | Special offer's title          |
+| text     | String | No        | Special offer's title          |
 +----------+--------+-----------+--------------------------------+
-| key      | String | Yes       |                                |
+| key      | String | No        |                                |
 +----------+--------+-----------+--------------------------------+
-| id       | Number | Yes       | Special offers's ID            |
+| id       | Number | No        | Special offers's ID            |
 +----------+--------+-----------+--------------------------------+
-| from     | String | Yes       | Date from special offer starts |
+| from     | String | No        | Date from special offer starts |
 +----------+--------+-----------+--------------------------------+
-| till     | String | Yes       | Date when special offer ends   |
+| till     | String | No        | Date when special offer ends   |
 +----------+--------+-----------+--------------------------------+
-| stay     | String | Yes       | Number of nights to stay       |
+| stay     | String | No        | Number of nights to stay       |
 +----------+--------+-----------+--------------------------------+
-| pay      | String | Yes       | Number of nights to pay        |
+| pay      | String | No        | Number of nights to pay        |
 +----------+--------+-----------+--------------------------------+
-| nights   | String | Yes       | Discount in nights             |
+| nights   | String | No        | Discount in nights             |
 +----------+--------+-----------+--------------------------------+
-| percent  | String | Yes       | Discount in percent            |
+| percent  | String | No        | Discount in percent            |
 +----------+--------+-----------+--------------------------------+
-| discount | String | Yes       | Discount value                 |
+| discount | String | No        | Discount value                 |
 +----------+--------+-----------+--------------------------------+
 
 Order/Items/HotelItem/PermittedOperations
@@ -610,15 +647,19 @@ Cancellation and amendment charges
 
 **Child items:**
 
-+-----------------+-------------+------------------------+
-| Name            | Mandatory   | Description            |
-+=================+=============+========================+
-| Currency        | Yes         | Currency               |
-+-----------------+-------------+------------------------+
-| Cancellations   | Yes         | Cancellation charges   |
-+-----------------+-------------+------------------------+
-| Amendments      | No          | Amendment charges      |
-+-----------------+-------------+------------------------+
++-----------------+-------------+----------------------------------------+
+| Name            | Mandatory   | Description                            |
++=================+=============+========================================+
+| Currency        | Yes         | Currency                               |
++-----------------+-------------+----------------------------------------+
+| DenyNameChanges | Да          | Ability to change the names of clients |
++-----------------+-------------+----------------------------------------+
+| Cancellations   | Yes         | Cancellation charges                   |
++-----------------+-------------+----------------------------------------+
+| Amendments      | No          | Amendment charges                      |
++-----------------+-------------+----------------------------------------+
+| TextCharges     | No          | Text charges                           |
++-----------------+-------------+----------------------------------------+
 
 Order/Items/HotelItem/ChargeConditions/DenyNameChanges item
 -----------------------------------------------------------
@@ -661,8 +702,6 @@ Cancellation charges.
 +-------------+--------------+-----------+------------------------------------+
 | policy      | String       | No        | Charge policy                      |
 +-------------+--------------+-----------+------------------------------------+
-| charge      | true / false | Yes       | Charge applied(true), or no(false) |
-+-------------+--------------+-----------+------------------------------------+
 
  **Child items:** No.
 
@@ -687,8 +726,6 @@ Amendment charges.
 | price         | Numeric        | No          | Price (if charge=true)                |
 +---------------+----------------+-------------+---------------------------------------+
 | policy        | String         | No          | Charge policy                         |
-+---------------+----------------+-------------+---------------------------------------+
-| charge        | true / false   | Yes         | Charge applied(true), or no(false)    |
 +---------------+----------------+-------------+---------------------------------------+
 
 **Child items:** No.
@@ -726,7 +763,11 @@ Price breakdown by days.
 +============+=====================+===========+===================================+
 | roomNumber | Numeric             | Yes       | Number of rooms (>=1)             |
 +------------+---------------------+-----------+-----------------------------------+
-| roomName   | String              | Yes       | Room name (room size, type, view) |
+| roomSizeId | Numeric             | Yes       | id room size                      |
++------------+---------------------+-----------+-----------------------------------+
+| roomTypeId | Numeric             | Yes       | id room type                      |
++------------+---------------------+-----------+-----------------------------------+
+| roomViewId | Numeric             | Yes       | id room view                      |
 +------------+---------------------+-----------+-----------------------------------+
 | child      | 0 / 1               | Yes       | Additional place for child        |
 +------------+---------------------+-----------+-----------------------------------+
