@@ -10,8 +10,6 @@ XSD-схема запроса списка заказов:
 
 XSD-схема ответа на запрос списка заказов:
 
--  ``www/xsd/order/OrderListResponse.xsd``
-
 :download:`www/xsd/order/OrderListResponse.xsd <../../themes/hotelbook/static/xsd/order/OrderListResponse.xsd>`
 
 Запрос списка заказов, OrderListRequest
