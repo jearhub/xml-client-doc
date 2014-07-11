@@ -230,7 +230,6 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="Id"/>
-				<xs:element ref="Test" minOccurs="0"/>
 				<xs:element ref="Manager" minOccurs="0"/>
 				<xs:element ref="Tag" minOccurs="0"/>
 				<xs:element ref="State"/>
