@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+	<!-- Attributes -->
+	<xs:attributeGroup name="CheckInOutAttributes">
+		<xs:attribute name="info" type="xs:boolean"/>
+		<xs:attribute name="default" type="T_Time"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PossibleRemarkAttributes">
+		<xs:attribute name="code" type="xs:string" use="required"/>
+		<xs:attribute name="default" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="EditableOptionAttributes">
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="editable" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RoomLocksAttributes">
+		<xs:attribute name="roomId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="lock" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DenyNameChangesAttributes">
+		<xs:attribute name="deny" type="xs:boolean" use="required"/>
+		<xs:attribute name="from" type="xs:dateTime"/>
+		<xs:attribute name="to" type="xs:dateTime"/>
+	</xs:attributeGroup>
+	<!-- Simple Types -->
+	<xs:simpleType name="T_ItemState">
+		<xs:annotation>
+			<xs:documentation>Item(hotel) states</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NEW"/>
+			<xs:enumeration value="IN_PROGRESS"/>
+			<xs:enumeration value="COMMITED"/>
+			<xs:enumeration value="UNCOMMITED"/>
+			<xs:enumeration value="CANCEL_NOT_SEND"/>
+			<xs:enumeration value="CANCEL_IN_PROGRESS"/>
+			<xs:enumeration value="CANCELED"/>
+			<xs:enumeration value="CANCEL_UNCOMMITED"/>
+			<xs:enumeration value="CANCEL_DENIED"/>
+			<xs:enumeration value="CHANGES_DENIED"/>
+			<xs:enumeration value="CHANGED"/>
+			<xs:enumeration value="CHANGES_NOT_SEND"/>
+			<xs:enumeration value="CHANGES_IN_PROGRESS"/>
+			<xs:enumeration value="CHANGES_UNCOMMITED"/>
+			<xs:enumeration value="ADDITION_PENDING"/>
+			<xs:enumeration value="MODIFICATION_PENDING"/>
+			<xs:enumeration value="CANCELATION_PENDING"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Time">
+		<xs:annotation>
+			<xs:documentation>HH:MI</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-2][0-9]:[0-2][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Types -->
+	<xs:complexType name="CT_CheckInOutTime">
+		<xs:attributeGroup ref="CheckInOutAttributes"/>
+	</xs:complexType>
+	<!-- Simple Elements -->
+	<xs:element name="OrderId" type="xs:positiveInteger"/>
+	<xs:element name="ItemId" type="xs:positiveInteger"/>
+	<xs:element name="State" type="T_ItemState"/>
+	<xs:element name="CityId" type="xs:positiveInteger"/>
+	<xs:element name="HotelId" type="xs:integer"/>
+	<xs:element name="Name" type="xs:string"/>
+	<xs:element name="CategoryId" type="xs:positiveInteger"/>
+	<xs:element name="CheckIn" type="xs:date"/>
+	<xs:element name="Duration" type="xs:positiveInteger"/>
+	<xs:element name="ProviderId" type="xs:positiveInteger"/>
+	<xs:element name="CheckInTime" type="CT_CheckInOutTime"/>
+	<xs:element name="CheckOutTime" type="CT_CheckInOutTime"/>
+	<xs:element name="CommentLanguage" type="xs:string"/>
+	<!-- Complex Elements-->
+	<xs:element name="Hotel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderId" minOccurs="0"/>
+				<xs:element ref="ItemId" minOccurs="0"/>
+				<xs:element ref="State" minOccurs="0"/>
+				<xs:element ref="CityId"/>
+				<xs:element ref="HotelId"/>
+				<xs:element ref="Name"/>
+				<xs:element ref="CategoryId"/>
+				<xs:element ref="CheckIn"/>
+				<xs:element ref="Duration"/>
+				<xs:element ref="ProviderId" minOccurs="0"/>
+				<xs:element ref="CheckInTime" minOccurs="0"/>
+				<xs:element ref="CheckOutTime" minOccurs="0"/>
+				<xs:element ref="PossibleRemarks"/>
+				<xs:element ref="CommentLanguage" minOccurs="0"/>
+				<xs:element ref="EditableOptions"/>
+				<xs:element ref="RoomLocks"/>
+				<xs:element ref="DenyNameChanges"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PossibleRemarks">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Remark">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attributeGroup ref="PossibleRemarkAttributes"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EditableOptions">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Option">
+					<xs:complexType>
+						<xs:attributeGroup ref="EditableOptionAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoomLocks">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Room">
+					<xs:complexType>
+						<xs:attributeGroup ref="RoomLocksAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DenyNameChanges">
+		<xs:complexType>
+			<xs:attributeGroup ref="DenyNameChangesAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HotelModifyRestrictionsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Errors" minOccurs="0"/>
+				<xs:element ref="Hotel" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!-- Simple Elements -->
+    <xs:element name="SearchId" type="xs:positiveInteger"/>
+    <xs:element name="ResultId" type="xs:positiveInteger"/>
+    <!-- Complex Elements -->
+    <xs:element name="VehicleSearches">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleSearch" maxOccurs="10"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleSearch">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SearchId"/>
+                <xs:element ref="ResultId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleSearchDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleSearches"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

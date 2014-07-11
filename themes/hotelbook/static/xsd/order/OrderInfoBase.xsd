@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="DenyNameChangesAttributes">
+		<xs:attribute name="deny" type="xs:boolean" use="required"/>
+		<xs:attribute name="from" type="xs:dateTime"/>
+		<xs:attribute name="to" type="xs:dateTime"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CancellationAmendmentAttributes">
+		<xs:attribute name="charge" type="xs:boolean" use="required"/>
+		<xs:attribute name="denyChanges" type="xs:boolean" use="required"/>
+		<xs:attribute name="from" type="xs:dateTime"/>
+		<xs:attribute name="to" type="xs:dateTime"/>
+		<xs:attribute name="price" type="T_Price"/>
+		<xs:attribute name="policy" type="xs:string"/>
+	</xs:attributeGroup>
+	<!-- Simple Types -->
+	<xs:simpleType name="T_Price">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Currency">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Time">
+		<xs:annotation>
+			<xs:documentation>HH:MI</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[0-9]|1[1-2]):[0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_DateTime">
+		<xs:annotation>
+			<xs:documentation>YYYY-MM-DD HH:MI:SS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{4}-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-2][0-9]:[0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_ItemStateName">
+		<xs:annotation>
+			<xs:documentation>Item(hotel) states</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NEW"/>
+			<xs:enumeration value="IN_PROGRESS"/>
+			<xs:enumeration value="COMMITED"/>
+			<xs:enumeration value="UNCOMMITED"/>
+			<xs:enumeration value="CANCEL_NOT_SEND"/>
+			<xs:enumeration value="CANCEL_IN_PROGRESS"/>
+			<xs:enumeration value="CANCELED"/>
+			<xs:enumeration value="CANCEL_UNCOMMITED"/>
+			<xs:enumeration value="CANCEL_DENIED"/>
+			<xs:enumeration value="CHANGES_DENIED"/>
+			<xs:enumeration value="CHANGED"/>
+			<xs:enumeration value="CHANGES_NOT_SEND"/>
+			<xs:enumeration value="CHANGES_IN_PROGRESS"/>
+			<xs:enumeration value="CHANGES_UNCOMMITED"/>
+			<xs:enumeration value="ADDITION_PENDING"/>
+			<xs:enumeration value="MODIFICATION_PENDING"/>
+			<xs:enumeration value="CANCELATION_PENDING"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Phone">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Email">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Types -->
+	<xs:complexType name="T_ItemState">
+		<xs:simpleContent>
+			<xs:extension base="T_ItemStateName">
+				<xs:attribute name="id" type="xs:positiveInteger"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- Simple Elements -->
+	<xs:element name="Id" type="xs:positiveInteger"/>
+	<xs:element name="Currency" type="T_Currency"/>
+	<xs:element name="Comment" type="xs:string"/>
+	<xs:element name="ProviderId" type="xs:positiveInteger"/>
+	<xs:element name="ProviderReference" type="xs:string"/>
+	<xs:element name="Name" type="xs:string"/>
+	<xs:element name="CheckInTime" type="xs:string"/>
+	<xs:element name="TotalPrice" type="T_Price"/>
+	<xs:element name="Fee" type="T_Price"/>
+	<xs:element name="UseNds" type="xs:boolean"/>
+	<xs:element name="PaxId" type="CT_PaxId"/>
+	<xs:element name="Information" type="xs:string"/>
+	<xs:element name="Phone" type="T_Phone"/>
+	<xs:element name="Manager" type="xs:string"/>
+	<xs:element name="ManagerEmail" type="T_Email"/>
+	<xs:element name="TextCharges" type="xs:string"/>
+	<!-- Complex Types-->
+	<xs:complexType name="CT_PaxId">
+		<xs:simpleContent>
+			<xs:extension base="xs:positiveInteger">
+				<xs:attribute name="isLeader" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- Complex Elements-->
+	<xs:element name="ChargeConditions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Currency"/>
+				<xs:element ref="DenyNameChanges" minOccurs="0"/>
+				<xs:element ref="Cancellations" minOccurs="0"/>
+				<xs:element ref="Amendments" minOccurs="0"/>
+				<xs:element ref="TextCharges" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DenyNameChanges">
+		<xs:complexType>
+			<xs:attributeGroup ref="DenyNameChangesAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cancellations">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="Cancellation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cancellation">
+		<xs:complexType>
+			<xs:attributeGroup ref="CancellationAmendmentAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Amendments">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="Amendment"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Amendment">
+		<xs:complexType>
+			<xs:attributeGroup ref="CancellationAmendmentAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

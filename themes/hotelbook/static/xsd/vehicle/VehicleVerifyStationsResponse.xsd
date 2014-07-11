@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+    <xs:include schemaLocation="VehicleVerifyStationsRequest.xsd"/>
+    <!-- Simple type -->
+    <!-- Attributes -->
+    <!-- Simple elements -->
+    <!-- Complex elements -->
+    <xs:element name="Detail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Title" type="xs:string"/>
+                <xs:element name="Value" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleVerifyStationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleVerifyStationsRequest"/>
+                <xs:element ref="Errors" minOccurs="0"/>
+                <xs:element name="VehicleVerifyStations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Verify" type="xs:boolean"/>
+                            <xs:element name="AdditionalInfo" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence maxOccurs="unbounded">
+                                        <xs:element ref="Detail" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

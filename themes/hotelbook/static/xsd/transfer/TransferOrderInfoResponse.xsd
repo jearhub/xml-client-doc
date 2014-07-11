@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../order/OrderInfoBase.xsd"/>
+	<!-- Attributes -->
+	<xs:attributeGroup name="TransferItemAttributes">
+		<xs:attribute name="itemId" type="xs:positiveInteger" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VehicleAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AvailableVehiclesAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="minPassengers" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="maxPassengers" type="xs:nonNegativeInteger"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AvailableHotelsAttributes">
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="forBooking" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PickUpDropOffAttributes">
+		<xs:attribute name="cityId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="cityName" type="xs:string" use="required"/>
+		<xs:attribute name="countryId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="countryName" type="xs:string" use="required"/>
+		<xs:attribute name="locationId" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="locationName" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<!-- Simple Types -->
+	<!-- Simple Elements -->
+	<xs:element name="Date" type="xs:date"/>
+	<xs:element name="Passengers" type="xs:positiveInteger"/>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="Language" type="T_IdName"/>
+	<xs:element name="TransferTime" type="xs:string"/>
+	<xs:element name="Airport" type="T_IdName"/>
+	<xs:element name="FlightNum" type="xs:string"/>
+	<xs:element name="ArrivalAirport" type="T_IdName"/>
+	<xs:element name="Station" type="T_IdName"/>
+	<xs:element name="TrainNum" type="xs:string"/>
+	<xs:element name="ArrivalCity" type="T_IdName"/>
+	<xs:element name="Hotel" type="T_IdName"/>
+	<xs:element name="AddressLine" type="xs:string"/>
+	<xs:element name="ZipCode" type="xs:string"/>
+	<xs:element name="District" type="xs:string"/>
+	<xs:element name="ShipName" type="xs:string"/>
+	<xs:element name="ShipCompanyName" type="xs:string"/>
+	<xs:element name="DepartureAirport" type="T_IdName"/>
+	<xs:element name="DepartureCity" type="T_IdName"/>
+	<xs:element name="Time" type="T_Time"/>
+	<!-- Complex Types-->
+	<xs:complexType name="T_IdName">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="id" type="xs:nonNegativeInteger"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- Complex Elements-->
+	<xs:element name="TransferItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Manager" minOccurs="0"/>
+				<xs:element ref="ManagerEmail" minOccurs="0"/>
+				<xs:element ref="ProviderId" minOccurs="0"/>
+				<xs:element ref="ProviderReference" minOccurs="0"/>
+                <xs:element name="ClientReference" type="xs:string" minOccurs="0"/>
+				<xs:element name="State" type="T_ItemState"/>
+				<xs:element ref="Date"/>
+				<xs:element ref="Passengers"/>
+				<xs:element ref="Description"/>
+				<xs:element ref="Vehicle"/>
+				<xs:element ref="Language"/>
+				<xs:element ref="TransferTime"/>
+				<xs:element ref="CheckInTime"/>
+                <xs:element ref="PermittedOperations" minOccurs="0"/>
+				<xs:element ref="ModifyRestrictions"/>
+				<xs:element ref="AvailableVehicles" minOccurs="0"/>
+				<xs:element ref="AvailableHotels" minOccurs="0"/>
+				<xs:element ref="PaxId"/>
+				<xs:element ref="TotalPrice"/>
+				<xs:element ref="Fee" minOccurs="0"/>
+				<xs:element ref="Currency"/>
+				<xs:element ref="UseNds" minOccurs="0"/>
+				<xs:element ref="Information"/>
+				<xs:element ref="PickUp"/>
+				<xs:element ref="DropOff"/>
+				<xs:element ref="ChargeConditions" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="TransferItemAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Vehicle">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Description"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="VehicleAttributes"/>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="PermittedOperations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Modify"/>
+                <xs:element ref="Cancel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Modify" type="xs:boolean"/>
+    <xs:element name="Cancel" type="xs:boolean"/>
+	<xs:element name="ModifyRestrictions">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="FixFrom" type="xs:boolean" />
+				<xs:element name="FixTo" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableVehicles">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableVehicle"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableVehicle">
+		<xs:complexType>
+			<xs:attributeGroup ref="AvailableVehiclesAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableHotels">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FromHotels"/>
+				<xs:element ref="ToHotels"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FromHotels">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableHotel"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ToHotels">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AvailableHotel"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvailableHotel">
+		<xs:complexType>
+			<xs:attributeGroup ref="AvailableHotelsAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PickUp">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Airport" minOccurs="0"/>
+				<xs:element ref="Station" minOccurs="0"/>
+				<xs:element ref="Hotel" minOccurs="0"/>
+				<xs:element name="Address" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="2">
+							<xs:element ref="AddressLine"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ZipCode" minOccurs="0"/>
+				<xs:element ref="District" minOccurs="0"/>
+				<xs:element ref="Phone" minOccurs="0"/>
+				<xs:element ref="FlightNum" minOccurs="0"/>
+				<xs:element ref="TrainNum" minOccurs="0"/>
+				<xs:element ref="ShipName" minOccurs="0"/>
+				<xs:element ref="ShipCompanyName" minOccurs="0"/>
+				<xs:element ref="ArrivalAirport" minOccurs="0"/>
+				<xs:element ref="ArrivalCity" minOccurs="0"/>
+				<xs:element ref="Time"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="PickUpDropOffAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DropOff">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Airport" minOccurs="0"/>
+				<xs:element ref="Station" minOccurs="0"/>
+				<xs:element ref="Hotel" minOccurs="0"/>
+				<xs:element name="Address" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="2">
+							<xs:element ref="AddressLine"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ZipCode" minOccurs="0"/>
+				<xs:element ref="District" minOccurs="0"/>
+				<xs:element ref="Phone" minOccurs="0"/>
+				<xs:element ref="FlightNum" minOccurs="0"/>
+				<xs:element ref="TrainNum" minOccurs="0"/>
+				<xs:element ref="ShipName" minOccurs="0"/>
+				<xs:element ref="ShipCompanyName" minOccurs="0"/>
+				<xs:element ref="DepartureAirport" minOccurs="0"/>
+				<xs:element ref="DepartureCity" minOccurs="0"/>
+				<xs:element ref="Time"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="PickUpDropOffAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

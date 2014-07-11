@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!-- Simple type -->
+    <!-- Attributes -->
+    <!-- Simple elements -->
+    <xs:element name="SearchId" type="xs:positiveInteger"/>
+    <xs:element name="ResultId" type="xs:positiveInteger"/>
+    <xs:element name="Station" type="xs:positiveInteger"/>
+    <!-- Complex elements -->
+    <xs:element name="VehicleVerifyStationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SearchId"/>
+                <xs:element ref="ResultId"/>
+                <xs:element name="PickUp">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Station"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DropOff">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Station"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

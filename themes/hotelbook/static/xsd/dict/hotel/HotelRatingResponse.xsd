@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HotelRating">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Hotel" type="xs:string">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:positiveInteger" use="required">
+										<xs:annotation>
+											<xs:documentation>Our hotel id</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="hotelUrl" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>URL to hotel description page at TripAdvisor side</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="reviewCount" type="xs:nonNegativeInteger" use="required">
+										<xs:annotation>
+											<xs:documentation>Count of hotel reviews</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="averageRating" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Average hotel rating (float number)</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ratingUrl" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>URL to hotel rating image at TripAdvisor side</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

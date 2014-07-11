@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../order/VoucherInfoBase.xsd"/>
+	<!-- Attributes -->
+	<!-- Simple Types -->
+	<xs:simpleType name="T_MapType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="graphic" />
+			<xs:enumeration value="link" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Simple Elements -->
+	<xs:element name="Address" type="xs:string"/>
+	<xs:element name="Email" type="xs:string"/>
+	<xs:element name="Telephone" type="xs:string"/>
+	<xs:element name="Fax" type="xs:string"/>
+	<xs:element name="Latitude" type="xs:string"/>
+	<xs:element name="Longitude" type="xs:string"/>
+	<xs:element name="HotelRemarks" type="xs:string"/>
+	<xs:element name="CheckInDate" type="xs:string"/>
+	<xs:element name="CheckOutDate" type="xs:string"/>
+	<xs:element name="Duration" type="xs:string"/>
+	<xs:element name="Paxes" type="xs:string"/>
+	<xs:element name="NumberOfRooms" type="xs:positiveInteger"/>
+	<!-- Complex Elements-->
+	<xs:element name="Voucher">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Issued"/>
+				<xs:element ref="BookingDetails"/>
+				<xs:element ref="Hotel"/>
+				<xs:element ref="RoomList"/>
+				<xs:element ref="HotelRemarks" minOccurs="0"/>
+				<xs:element ref="AOTNumbers" minOccurs="0"/>
+				<xs:element ref="AdditionalInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Hotel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Country"/>
+				<xs:element ref="City"/>
+				<xs:element ref="Address"/>
+				<xs:element ref="Email"/>
+				<xs:element ref="Telephone"/>
+				<xs:element ref="Fax"/>
+				<xs:element ref="Map" minOccurs="0"/>
+				<xs:element ref="Position" minOccurs="0"/>
+				<xs:element ref="AdditionalDetailList" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="ItemAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Map">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" type="T_MapType" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Position">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Latitude"/>
+				<xs:element ref="Longitude"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoomList">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="Room"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Room">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="CheckInDate"/>
+				<xs:element ref="CheckOutDate"/>
+				<xs:element ref="Duration"/>
+				<xs:element ref="Paxes"/>
+				<xs:element ref="NumberOfRooms"/>
+				<xs:element ref="AdditionalDetailList" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="ItemAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

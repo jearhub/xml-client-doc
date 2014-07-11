@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+	<!-- Simple Types-->
+	<xs:simpleType name="T_PayForm">
+		<xs:annotation>
+			<xs:documentation>Order pay form</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="cash"/>
+			<xs:enumeration value="cashless"/>
+			<xs:enumeration value="undefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Attributes-->
+	<!-- Simple Elements-->
+	<xs:element name="OrderId" type="xs:positiveInteger"/>
+	<xs:element name="PayForm" type="T_PayForm"/>
+	<!-- Complex Elements-->
+	<xs:element name="AddOrderResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Errors" minOccurs="0"/>
+				<xs:element ref="OrderId" minOccurs="0"/>
+				<xs:element ref="PayForm" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

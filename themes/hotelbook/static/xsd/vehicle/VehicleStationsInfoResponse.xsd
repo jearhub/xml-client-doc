@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+    <xs:include schemaLocation="VehicleStationsInfoRequest.xsd"/>
+    <!-- Simple type -->
+    <xs:simpleType name="T_Phone">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="T_Fax">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Attributes -->
+    <xs:attributeGroup name="StationAttributes">
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    </xs:attributeGroup>
+    <!-- Simple element -->
+    <xs:element name="Phone" type="T_Phone"/>
+    <xs:element name="Fax" type="T_Fax"/>
+    <!-- Complex element -->
+    <xs:element name="Station">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Address" type="xs:string"/>
+                <xs:element ref="Phone" minOccurs="0"/>
+                <xs:element ref="Fax" minOccurs="0"/>
+                <xs:element name="OperationTime" type="xs:string" minOccurs="0"/>
+                <xs:element name="OffAirport" type="xs:boolean" minOccurs="0"/>
+                <xs:element name="HotelDelivery" type="xs:boolean" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="StationAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleStationsInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleStationsInfoRequest" minOccurs="0"/>
+                <xs:element ref="Errors" minOccurs="0"/>
+                <xs:element name="VehicleStationsInfo" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="PickUp">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="Station"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="DropOff">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="Station"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

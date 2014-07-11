@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../order/VoucherInfoBase.xsd"/>
+	<!-- Attributes -->
+	<!-- Simple Types -->
+	<xs:simpleType name="T_MapType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="graphic" />
+			<xs:enumeration value="link" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Simple Elements -->
+	<xs:element name="Language" type="xs:string"/>
+	<xs:element name="LeadPassenger" type="xs:string"/>
+	<xs:element name="TotalPassengers" type="xs:positiveInteger"/>
+	<!-- Complex Elements-->
+	<xs:element name="Voucher">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Issued"/>
+				<xs:element ref="BookingDetails"/>
+				<xs:element ref="Transfer"/>
+				<xs:element ref="PickUp"/>
+				<xs:element ref="DropOff"/>
+				<xs:element ref="AOTNumbers" minOccurs="0"/>
+				<xs:element ref="AdditionalInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transfer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+				<xs:element ref="Name"/>
+				<xs:element ref="Description"/>
+				<xs:element ref="Language"/>
+				<xs:element ref="LeadPassenger"/>
+				<xs:element ref="TotalPassengers"/>
+				<xs:element ref="AdditionalDetailList" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="ItemAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PickUp">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="LocationDetail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DropOff">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="LocationDetail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LocationDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="Value"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

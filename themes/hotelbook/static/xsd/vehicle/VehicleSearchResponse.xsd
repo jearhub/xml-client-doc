@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Errors.xsd"/>
+    <xs:include schemaLocation="VehicleSearchRequest.xsd"/>
+    <!-- Types -->
+    <xs:simpleType name="T_Price">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="T_Currency">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="T_ACRISS">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="T_ACRISS_Part">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="T_Confirmation">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="onRequest|online|inaccessible"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Attributes -->
+    <xs:attributeGroup name="VehicleSearchAttributes">
+        <xs:attribute name="searchId" type="xs:positiveInteger" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PickUpDropOffSearchAttributes">
+        <xs:attribute name="countryId" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="countryName" type="xs:string" use="required"/>
+        <xs:attribute name="cityId" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="cityName" type="xs:string" use="required"/>
+        <xs:attribute name="airportId" type="xs:positiveInteger"/>
+        <xs:attribute name="airportName" type="xs:string"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehicleCompanyAttributes">
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="logo_url" type="xs:string" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehicleACRISSAttributes">
+        <xs:attribute name="acrissClass" type="T_ACRISS_Part" use="required"/>
+        <xs:attribute name="acrissType" type="T_ACRISS_Part" use="required"/>
+        <xs:attribute name="acrissTransmission" type="T_ACRISS_Part" use="required"/>
+        <xs:attribute name="acrissFuelAC" type="T_ACRISS_Part" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehicleInformationAttributes">
+        <xs:attribute name="doors" type="xs:positiveInteger"/>
+        <xs:attribute name="auto" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Transmission type</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ac" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Availability of air conditioning</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="luggageLarge" type="xs:boolean"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="SpecialOfferAttributes">
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehicleInsurancePolicyAttributes">
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="price" type="T_Price" use="required"/>
+        <xs:attribute name="currency" type="T_Currency" use="required"/>
+        <xs:attribute name="comparePrice" type="T_Price"/>
+        <xs:attribute name="currencyTarget" type="T_Currency"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehicleAttributes">
+        <xs:attribute name="resultId" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="vehicleName" type="xs:string" use="required"/>
+        <xs:attribute name="providerId" type="xs:positiveInteger"/>
+        <xs:attribute name="confirmation" type="T_Confirmation" use="required"/>
+        <xs:attribute name="specialOffer" type="xs:integer" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="VehiclesAttributes">
+        <xs:attribute name="finalResultId" type="xs:integer"/>
+    </xs:attributeGroup>
+    <!-- Elements -->
+    <xs:element name="SpecialOffer">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attributeGroup ref="SpecialOfferAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleCompany">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attributeGroup ref="VehicleCompanyAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ACRISS">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="T_ACRISS">
+                    <xs:attributeGroup ref="VehicleACRISSAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleImage">
+        <xs:complexType>
+            <xs:attribute name="url" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleClass">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="id" type="T_ACRISS_Part"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleType">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="id" type="T_ACRISS_Part"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleInformation">
+        <xs:complexType>
+            <xs:attributeGroup ref="VehicleInformationAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleInsurancePolicy">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attributeGroup ref="VehicleInsurancePolicyAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Vehicle">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleClass" minOccurs="0"/>
+                <xs:element ref="VehicleType" minOccurs="0"/>
+                <xs:element ref="VehicleCompany" minOccurs="0"/>
+                <xs:element ref="ACRISS"/>
+                <xs:element ref="VehicleImage" minOccurs="0"/>
+                <xs:element ref="VehicleInformation" minOccurs="0"/>
+                <xs:element ref="SpecialOffer" minOccurs="0"/>
+                <xs:element ref="VehicleInsurancePolicy" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="VehicleAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Vehicles">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="Vehicle"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="VehiclesAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchPickUp">
+        <xs:complexType>
+            <xs:attributeGroup ref="PickUpDropOffSearchAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchDropOff">
+        <xs:complexType>
+            <xs:attributeGroup ref="PickUpDropOffSearchAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleSearch">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SearchPickUp"/>
+                <xs:element ref="SearchDropOff"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="VehicleSearchAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleSearchId" type="xs:positiveInteger"/>
+    <!-- ################################################# -->
+    <xs:element name="VehicleSearchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleSearchRequest" minOccurs="0"/>
+                <xs:element ref="Errors" minOccurs="0"/>
+                <xs:element ref="VehicleSearch" minOccurs="0"/>
+                <xs:element ref="VehicleSearchId" minOccurs="0"/>
+                <xs:element ref="Vehicles" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

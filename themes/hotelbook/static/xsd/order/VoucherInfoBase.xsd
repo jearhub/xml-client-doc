@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Attributes -->
+	<xs:attributeGroup name="ItemAttributes">
+		<xs:attribute name="Id" type="xs:positiveInteger" use="required"/>
+	</xs:attributeGroup>
+	<!-- Simple Types -->
+	<!-- Simple Elements -->
+	<xs:element name="Issued" type="xs:string"/>
+	<xs:element name="Supplier" type="xs:string"/>
+	<xs:element name="Reference" type="xs:string"/>
+	<xs:element name="Title" type="xs:string"/>
+	<xs:element name="Value" type="xs:string"/>
+	<xs:element name="Date" type="xs:string"/>
+	<xs:element name="Name" type="xs:string"/>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="Country" type="xs:string"/>
+	<xs:element name="City" type="xs:string"/>
+	<xs:element name="AdditionalInformation" type="xs:string"/>
+	<!-- Complex Elements-->
+	<xs:element name="Location">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AOTNumbers">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="Location"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookingDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Supplier" minOccurs="0"/>
+				<xs:element ref="Reference" minOccurs="0"/>
+				<xs:element ref="AdditionalDetailList" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AdditionalDetailList">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="AdditionalDetail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AdditionalDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="Value"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
