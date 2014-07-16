@@ -10,7 +10,7 @@
 	<!-- Simple Types-->
 	<xs:simpleType name="T_UserName">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[a-zA-Z0-9\-_ ]{1,50}"/>
+			<xs:pattern value="[a-zA-Z0-9\-_]{1,50}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="T_FullUserName">
