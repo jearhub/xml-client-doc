@@ -50,8 +50,8 @@ XML-шлюз HotelBook.ru
 - на английском языке
 
 Для получения данных на английском языке нужно в параметрах URL передать четвертый параметр — ``language=en``.
-Например, запрос списка стран на русском выглядит так: http://hotelbook.ru/xml/countries?login=&time=&checksum=,
-для английской версии будет выглядеть так – http://hotelbook.ru/xml/countries?login=&time=&checksum=&language=en.
+Например, запрос списка стран на русском выглядит так: http://hotelbook.pro/xml/countries?login=&time=&checksum=,
+для английской версии будет выглядеть так – http://hotelbook.pro/xml/countries?login=&time=&checksum=&language=en.
 Словари можно использовать на любом языке (русский/английский); при бронировании, подтверждени и аннуляции заказа
 должен использоваться только русский язык (параметр ``language=en`` не передается).
 
