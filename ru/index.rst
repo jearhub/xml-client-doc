@@ -15,14 +15,14 @@ XML-шлюз HotelBook.ru
 структуры в качестве параметров входа/выхода. XML – запрос необходимо передавать методом POST
 в параметре “request”.
 
-| Живой шлюз расположен по адресу: http://www.hotelbook.ru/xml
-| Тестовый шлюз расположен по адресу: http://test.hotelbook.vsespo.ru/xml
-| XSD схемы используемые в некоторых XML запросах/ответах расположены в: http://www.hotelbook.ru/xsd
+| Живой шлюз расположен по адресу: http://www.hotelbook.pro/xml
+| Тестовый шлюз расположен по адресу: http://test1.hotelbook.pro/xml
+| XSD схемы используемые в некоторых XML запросах/ответах расположены в: http://www.hotelbook.pro/xsd
 
  
 
-| По адресу http://test.hotelbook.vsespo.ru/xml-test.php можно производить поиск по данным, получаемым от тестовых серверов.
-| По адресу http://www.hotelbook.ru/xml-test.html можно производить поиск по реальным данным.
+| По адресу http://test1.hotelbook.pro/xml-test.php можно производить поиск по данным, получаемым от тестовых серверов.
+| По адресу http://hotelbook.pro/xml-test.html можно производить поиск по реальным данным.
 
 Авторизация
 ===========
